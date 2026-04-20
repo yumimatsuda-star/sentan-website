@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" fill="none">
+  <defs>
+    <linearGradient id="orb" x1="0" y1="0" x2="600" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#5CE1FF" stop-opacity="0.9"></stop>
+      <stop offset="50%" stop-color="#5CE1FF" stop-opacity="0.2"></stop>
+      <stop offset="100%" stop-color="#7C6BFF" stop-opacity="0.7"></stop>
+    </linearGradient>
+    <linearGradient id="orb2" x1="600" y1="0" x2="0" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7C6BFF" stop-opacity="0.6"></stop>
+      <stop offset="100%" stop-color="#5CE1FF" stop-opacity="0.1"></stop>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <circle cx="300" cy="300" r="280" stroke="url(#orb)" stroke-width="2.5" filter="url(#glow)"></circle>
+  <ellipse cx="300" cy="300" rx="260" ry="110" stroke="url(#orb2)" stroke-width="2" transform="rotate(-24 300 300)" filter="url(#glow)"></ellipse>
+  <ellipse cx="300" cy="300" rx="240" ry="80" stroke="#5CE1FF" stroke-opacity="0.5" stroke-width="2" transform="rotate(18 300 300)"></ellipse>
+  <circle cx="300" cy="300" r="160" stroke="#5CE1FF" stroke-opacity="0.35" stroke-width="1.8"></circle>
+  <circle cx="300" cy="300" r="90" stroke="#7C6BFF" stroke-opacity="0.5" stroke-width="1.8"></circle>
+
+  <circle cx="580" cy="300" r="4" fill="#5CE1FF" filter="url(#glow)"></circle>
+  <circle cx="300" cy="20" r="3" fill="#E6EEFF"></circle>
+  <circle cx="120" cy="440" r="3.5" fill="#7C6BFF" filter="url(#glow)"></circle>
+  <circle cx="300" cy="300" r="6" fill="#5CE1FF" fill-opacity="0.6" filter="url(#glow)"></circle>
+  <circle cx="300" cy="300" r="3" fill="#E6EEFF"></circle>
+</svg>

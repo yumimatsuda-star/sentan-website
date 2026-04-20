@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 64" fill="none">
+  <defs>
+    <linearGradient id="ring2" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#5CE1FF"></stop>
+      <stop offset="100%" stop-color="#7C6BFF"></stop>
+    </linearGradient>
+  </defs>
+  
+  <g>
+    <ellipse cx="32" cy="32" rx="26" ry="10" stroke="url(#ring2)" stroke-width="1.5" transform="rotate(-28 32 32)"></ellipse>
+    <ellipse cx="32" cy="32" rx="14" ry="5.5" stroke="#5CE1FF" stroke-width="1" transform="rotate(-28 32 32)" opacity="0.55"></ellipse>
+    <circle cx="32" cy="32" r="3.2" fill="#E6EEFF"></circle>
+    <circle cx="32" cy="32" r="6.5" stroke="#5CE1FF" stroke-width="1" opacity="0.6"></circle>
+    <circle cx="54.5" cy="22" r="1.6" fill="#5CE1FF"></circle>
+  </g>
+  
+  <text x="80" y="30" fill="#E6EEFF" font-family="&#39;Zen Kaku Gothic New&#39;,&#39;Hiragino Kaku Gothic ProN&#39;,sans-serif" font-size="20" font-weight="700" letter-spacing="0.5">先端AIロボテック</text>
+  
+  <text x="80" y="50" fill="#7A89B0" font-family="&#39;JetBrains Mono&#39;,ui-monospace,monospace" font-size="10" letter-spacing="2">SENTAN · AI · ROBOTECH</text>
+</svg>

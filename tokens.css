@@ -1,0 +1,285 @@
+/* ============================================================
+   先端AIロボテック — Design Tokens
+   colors_and_type.css
+   ============================================================ */
+
+/* Webfonts — Google Fonts substitutions.
+   NOTE: These are placeholders for any proprietary faces.
+   Zen Kaku Gothic New: primary JP+EN display/UI
+   Instrument Serif:    editorial accent (EN only)
+   JetBrains Mono:      technical / telemetry
+============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* ---------- Cosmic depth (surfaces) ---------- */
+  --void:        #040712;   /* primary canvas             */
+  --abyss:       #0B1426;   /* elevated surface / cards   */
+  --deep-space:  #111C33;   /* raised surface             */
+  --nebula:      #1A2747;   /* hovered surface            */
+  --cosmic-line: #24335A;   /* divider on dark            */
+
+  /* ---------- Stellar (ink + accents) ---------- */
+  --starlight:   #E6EEFF;   /* primary ink                */
+  --ice:         #B8C7E8;   /* secondary ink              */
+  --dusk:        #7A89B0;   /* tertiary ink / meta        */
+  --shadow-ink:  #4A5778;   /* disabled / placeholder     */
+
+  /* ---------- Signals ---------- */
+  --plasma-cyan: #5CE1FF;   /* primary interactive / link */
+  --plasma-cyan-soft: #2BA8CC;
+  --plasma-cyan-deep: #0B6B8C;
+
+  --quasar:      #7C6BFF;   /* accent, used sparingly     */
+  --quasar-soft: #5C4EDB;
+
+  --pulsar:      #FF6B9E;   /* rare accent (alerts/love)  */
+  --solar:       #FFD66B;   /* rare accent (warnings)     */
+  --nova:        #6BFFB5;   /* rare accent (success)      */
+
+  /* ---------- Semantic ---------- */
+  --bg:          var(--void);
+  --bg-elevated: var(--abyss);
+  --bg-raised:   var(--deep-space);
+  --bg-hover:    var(--nebula);
+
+  --fg:          var(--starlight);
+  --fg-2:        var(--ice);
+  --fg-3:        var(--dusk);
+  --fg-disabled: var(--shadow-ink);
+
+  --line:        rgba(230, 238, 255, 0.08);
+  --line-strong: rgba(230, 238, 255, 0.16);
+  --line-signal: rgba(92, 225, 255, 0.40);
+
+  --signal:        var(--plasma-cyan);
+  --signal-hover:  #7EEAFF;
+  --signal-press:  #3BCDEE;
+  --signal-on:     #041119; /* ink on signal fills */
+
+  --success: var(--nova);
+  --warning: var(--solar);
+  --danger:  var(--pulsar);
+
+  /* ---------- Glows (elevation = emission, not shadow) ---------- */
+  --glow-sm: 0 0 0 1px rgba(92,225,255,0.15), 0 2px 12px -2px rgba(92,225,255,0.15);
+  --glow-md: 0 0 0 1px rgba(92,225,255,0.25), 0 8px 32px -8px rgba(92,225,255,0.25);
+  --glow-lg: 0 0 0 1px rgba(92,225,255,0.35), 0 20px 60px -12px rgba(92,225,255,0.40);
+  --inner-catch: inset 0 1px 0 rgba(255,255,255,0.06);
+
+  /* ---------- Radii ---------- */
+  --radius-sm: 2px;
+  --radius-md: 6px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+  --radius-full: 999px;
+
+  /* ---------- Spacing (4px grid) ---------- */
+  --s-1:  4px;
+  --s-2:  8px;
+  --s-3:  12px;
+  --s-4:  16px;
+  --s-5:  24px;
+  --s-6:  32px;
+  --s-7:  48px;
+  --s-8:  64px;
+  --s-9:  96px;
+  --s-10: 128px;
+
+  /* ---------- Type stacks ---------- */
+  --font-display: "Noto Serif JP", "Hiragino Mincho ProN", "游明朝", YuMincho, "Yu Mincho", "源ノ明朝", serif;
+  --font-body:    "Noto Sans JP", "Hiragino Kaku Gothic ProN",
+                  "游ゴシック体", YuGothic, "Yu Gothic", system-ui, sans-serif;
+  --font-serif:   "Noto Serif JP", "Hiragino Mincho ProN", "源ノ明朝", serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ---------- Type scale ---------- */
+  /* Display — hero moments */
+  --display-2xl: 96px;
+  --display-xl:  72px;
+  --display-lg:  56px;
+  --display-md:  44px;
+
+  /* Headings */
+  --h1: 36px;
+  --h2: 28px;
+  --h3: 22px;
+  --h4: 18px;
+
+  /* Body */
+  --body-lg: 18px;
+  --body:    16px;
+  --body-sm: 14px;
+  --caption: 12px;
+  --eyebrow: 11px;
+
+  /* Line heights */
+  --lh-tight:  1.05;
+  --lh-snug:   1.25;
+  --lh-normal: 1.5;
+  --lh-loose:  1.75;
+
+  /* Tracking */
+  --track-tight: -0.02em;
+  --track-flat:  0;
+  --track-wide:  0.06em;  /* for eyebrows */
+
+  /* ---------- Motion ---------- */
+  --ease-orbital: cubic-bezier(0.2, 0.7, 0.1, 1);
+  --dur-micro:    150ms;
+  --dur-std:      240ms;
+  --dur-scene:    480ms;
+
+  /* ---------- Layout ---------- */
+  --container:  1280px;
+  --gutter:     24px;
+  --nav-height: 64px;
+}
+
+/* ============================================================
+   Semantic element styles — apply on pages that opt in
+   with class="brand" on <body> (or use the vars directly).
+============================================================ */
+
+.brand {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--body);
+  line-height: var(--lh-normal);
+  font-feature-settings: "palt" 1; /* tighter JP kerning */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: var(--track-flat);
+}
+
+.brand h1, .brand .h1 {
+  font-family: var(--font-display);
+  font-size: var(--h1);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--track-tight);
+  color: var(--fg);
+  margin: 0 0 var(--s-4);
+}
+.brand h2, .brand .h2 {
+  font-family: var(--font-display);
+  font-size: var(--h2);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--track-tight);
+  color: var(--fg);
+  margin: 0 0 var(--s-4);
+}
+.brand h3, .brand .h3 {
+  font-family: var(--font-display);
+  font-size: var(--h3);
+  font-weight: 500;
+  line-height: var(--lh-snug);
+  color: var(--fg);
+  margin: 0 0 var(--s-3);
+}
+.brand h4, .brand .h4 {
+  font-family: var(--font-display);
+  font-size: var(--h4);
+  font-weight: 500;
+  line-height: var(--lh-snug);
+  color: var(--fg);
+  margin: 0 0 var(--s-2);
+}
+
+.brand .display-xl {
+  font-family: var(--font-display);
+  font-size: var(--display-xl);
+  font-weight: 300;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--track-tight);
+}
+.brand .display-lg {
+  font-family: var(--font-display);
+  font-size: var(--display-lg);
+  font-weight: 300;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--track-tight);
+}
+
+.brand p, .brand .body {
+  font-size: var(--body);
+  line-height: var(--lh-normal);
+  color: var(--fg-2);
+}
+.brand .body-lg {
+  font-size: var(--body-lg);
+  line-height: var(--lh-normal);
+  color: var(--fg-2);
+}
+.brand .body-sm {
+  font-size: var(--body-sm);
+  line-height: var(--lh-normal);
+  color: var(--fg-2);
+}
+.brand .caption {
+  font-size: var(--caption);
+  line-height: var(--lh-normal);
+  color: var(--fg-3);
+}
+.brand .eyebrow {
+  font-size: var(--eyebrow);
+  font-weight: 500;
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--plasma-cyan);
+}
+
+.brand .mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "zero" 1, "ss02" 1;
+}
+.brand .serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
+.brand a {
+  color: var(--plasma-cyan);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-micro) var(--ease-orbital),
+              color var(--dur-micro) var(--ease-orbital);
+}
+.brand a:hover { border-bottom-color: currentColor; }
+.brand a:focus-visible {
+  outline: 2px solid var(--plasma-cyan);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.brand hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: var(--s-7) 0;
+}
+
+.brand code, .brand kbd, .brand pre {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+}
+.brand code {
+  background: var(--bg-elevated);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 1px 6px;
+  color: var(--plasma-cyan);
+}
+
+/* Selection */
+.brand ::selection {
+  background: rgba(92, 225, 255, 0.30);
+  color: var(--starlight);
+}
+
+/* Focus ring default */
+.brand :focus-visible {
+  outline: 2px solid var(--plasma-cyan);
+  outline-offset: 2px;
+}

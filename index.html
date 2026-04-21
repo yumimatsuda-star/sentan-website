@@ -1308,67 +1308,127 @@ const Hero = () => {
 /* ================= Services summary (on homepage) ================= */
 const ServicesSummary = () => {
   const services = [
-    { n:'01', key:'gov', icon:'gov', img:'assets/service-01.png', name:'行政・公共機関向けシステム', en:'Government & Public DX',
-      desc:'電子申請・情報管理・窓口DXシステムを、セキュリティ要件を押さえた設計で構築します。ガバメントクラウド準拠で、現場運用と制度適合を両立。',
-      tags:['Firebase', 'GCP', 'ISMAP準拠'] },
-    { n:'02', key:'enterprise', icon:'code', img:'assets/service-02.png', name:'業務システム・社内DX', en:'Business Systems & DX',
-      desc:'予約システム、OCR・帳票処理、業務自動化など、現場の困りごとをシステムで解決します。要件定義から運用保守まで自社エンジニアが一貫対応。',
-      tags:['予約システム', 'OCR', '業務自動化', 'ワークフロー'] },
-    { n:'03', key:'ai', icon:'cpu', img:'assets/service-03.png', name:'AI活用システム開発', en:'AI Integration',
-      desc:'ChatGPT・OCR・画像認識など、AIを実務に組み込んだシステムを構築します。「AIを使ってみたい」という相談から、実装・運用まで一貫対応。',
-      tags:['ChatGPT', 'OCR', '画像認識', 'API連携'] },
-    { n:'04', key:'web', icon:'map', img:'assets/service-04.png', name:'ECサイト・Web制作', en:'EC & Web Development',
-      desc:'ECサイトの構築・運用から、コーポレートサイト制作まで。デザインから実装・保守まで自社で完結します。',
-      tags:['ECサイト', 'LP', 'コーポレートサイト'] },
-    { n:'05', key:'edu', icon:'academy', img:'assets/service-05.png', name:'AI・DX教育・研修', en:'AI & DX Training',
-      desc:'企業・行政職員向けのITリテラシー研修、AIツール活用研修、eラーニング教材制作を実施します。導入後の定着まで見据えた内容です。',
-      tags:['eラーニング', '集合研修', 'AI活用研修'] },
-    { n:'06', key:'consult', icon:'compass', img:'assets/service-06.png', name:'ITよろず相談', en:'IT Consulting & Support',
-      desc:'「何から始めればいいかわからない」という相談から、DX活用提案、補助金サポートまで対応します。ITに限らず、企業の困りごとを一緒に整理します。',
-      tags:['DX相談', '補助金活用', 'IT戦略'] },
+    { n:'01', key:'ai', name:'生成AI', en:'Generative AI', icon:'cpu',
+      desc:'ChatGPT・Gemini・Claudeを用途に応じて使い分け。', color:'#5CE1FF' },
+    { n:'02', key:'ocr', name:'OCR', en:'Document AI', icon:'book',
+      desc:'書類・帳票の文字を自動読み取り。手入力をゼロに。', color:'#7C6BFF' },
+    { n:'03', key:'rpa', name:'RPA', en:'Automation', icon:'code',
+      desc:'繰り返しの定型作業を自動化。人の仕事を減らす。', color:'#6BFFB5' },
+    { n:'04', key:'cloud', name:'クラウド', en:'Google Cloud', icon:'cloud',
+      desc:'GCPのセキュアな基盤で、信頼性の高いシステムを。', color:'#FFD66B' },
+    { n:'05', key:'vision', name:'画像認識AI', en:'Vision AI', icon:'compass',
+      desc:'写真・画像から情報を自動抽出。検品・分類に。', color:'#FF6B9E' },
+    { n:'06', key:'speech', name:'音声認識AI', en:'Speech AI', icon:'signal',
+      desc:'音声をテキスト化。議事録自動生成に応用。', color:'#5CE1FF' },
   ];
+  const [hovered, setHovered] = React.useState(null);
+
   return (
     <section className="section" id="services">
       <div className="container">
-        <div className="section-header split">
-          <div>
-            <div className="eyebrow">SERVICES — 02</div>
-            <h2 className="section-title">6つの <em>領域</em> で、<br/>現場の課題を設計に変える。</h2>
-          </div>
-          <a href="services.html" className="link-arrow">
+        <div className="section-header">
+          <div className="eyebrow">SERVICES — 02</div>
+          <h2 className="section-title">6つの <em>領域</em> で、<br/>現場の課題を設計に変える。</h2>
+        </div>
+        <div style={{
+          display:'grid',
+          gridTemplateColumns:'repeat(3, 1fr)',
+          gap:'0',
+          maxWidth:'780px',
+          margin:'0 auto',
+        }}>
+          {services.map((s, i) => (
+            <div
+              key={s.n}
+              onMouseEnter={() => setHovered(i)}
+              onMouseLeave={() => setHovered(null)}
+              style={{
+                position:'relative',
+                display:'flex',
+                alignItems:'center',
+                justifyContent:'center',
+                padding:'0',
+                margin:'-20px',
+              }}
+            >
+              <div style={{
+                width:'240px',
+                height:'240px',
+                borderRadius:'50%',
+                background: hovered === i
+                  ? 'radial-gradient(circle at 40% 40%, rgba(11,20,38,0.9), rgba(4,7,18,0.95))'
+                  : `radial-gradient(circle at 40% 40%, ${s.color}22, ${s.color}08)`,
+                border: `1.5px solid ${hovered === i ? 'rgba(255,255,255,0.08)' : s.color}`,
+                boxShadow: hovered === i
+                  ? '0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.04)'
+                  : `0 0 40px ${s.color}44, 0 0 0 1px ${s.color}33, inset 0 1px 0 rgba(255,255,255,0.08)`,
+                display:'flex',
+                flexDirection:'column',
+                alignItems:'center',
+                justifyContent:'center',
+                gap:'12px',
+                cursor:'pointer',
+                transition:'all 0.35s cubic-bezier(0.2, 0.7, 0.1, 1)',
+                transform: hovered === i ? 'scale(1.08)' : 'scale(1)',
+                zIndex: hovered === i ? 10 : 1,
+                padding:'32px',
+                textAlign:'center',
+                textDecoration:'none',
+              }}
+              onClick={() => window.location.href = `services.html#${s.key}`}
+              >
+                <div style={{
+                  color: hovered === i ? 'var(--fg-3)' : s.color,
+                  transition:'color 0.3s',
+                }}>
+                  <Icon path={ICONS[s.icon]} size={32} />
+                </div>
+                <div style={{
+                  fontFamily:'var(--font-display)',
+                  fontSize:'17px',
+                  fontWeight:500,
+                  color: hovered === i ? 'var(--fg)' : s.color,
+                  transition:'color 0.3s',
+                  lineHeight:1.2,
+                }}>{s.name}</div>
+                <div style={{
+                  fontFamily:'var(--font-mono)',
+                  fontSize:'9px',
+                  letterSpacing:'0.16em',
+                  color:'var(--fg-3)',
+                  textTransform:'uppercase',
+                }}>{s.en}</div>
+                <div style={{
+                  fontSize:'11px',
+                  lineHeight:1.7,
+                  color:'var(--fg-3)',
+                  opacity: hovered === i ? 1 : 0,
+                  transform: hovered === i ? 'translateY(0)' : 'translateY(4px)',
+                  transition:'all 0.3s',
+                  maxWidth:'140px',
+                }}>{s.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={{textAlign:'center', marginTop:'56px'}}>
+          <a href="services.html" className="btn btn-primary btn-lg">
             事業内容の詳細 <Icon path={ICONS.arrow} size={14} />
           </a>
         </div>
-        <div className="services-grid">
-          {services.map(s => (
-            <a key={s.n} className="service-card" href={`services.html#${s.key}`}>
-              <div style={{
-                width:'100%',
-                height:'220px',
-                borderRadius:'var(--radius-md)',
-                overflow:'hidden',
-                margin:'-32px -28px 0',
-                width:'calc(100% + 56px)',
-              }}>
-                <img src={s.img} alt={s.name} style={{
-                  width:'100%',
-                  height:'100%',
-                  objectFit:'cover',
-                  objectPosition:'center',
-                  display:'block',
-                }} />
-              </div>
-              <div className="service-num">{s.n}</div>
-              <div className="service-name">{s.name}</div>
-              <div className="service-desc">{s.desc}</div>
-              <div className="service-tags">
-                {s.tags.map(t => <span key={t} className="service-tag">{t}</span>)}
-              </div>
-              <div className="service-arrow"><Icon path={ICONS.arrow} size={18} /></div>
-            </a>
-          ))}
-        </div>
       </div>
+      <style>{`
+        @media (max-width: 768px) {
+          #services .container > div:last-child {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+        @media (max-width: 480px) {
+          #services .container > div:last-child {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };
@@ -1376,14 +1436,17 @@ const ServicesSummary = () => {
 /* ================= Cases teaser ================= */
 const CasesTeaser = () => {
   const cases = [
-    { n:'001', sector:'GOV', title:'地方公共団体向け 電子申請・窓口DXシステム構築', tech:['Firebase','GCP','React'] },
-    { n:'002', sector:'ENTERPRISE', title:'音楽教室向け レッスン予約・講師割当・締め作業自動化システム', tech:['予約管理','自動化','スプレッドシート連携'] },
-    { n:'003', sector:'ENTERPRISE', title:'小売業EC基盤 / 受発注・在庫の自動化', tech:['Next.js','Cloud Run'] },
-    { n:'004', sector:'AI', title:'OCRを活用した書類読み取り・データ入力自動化', tech:['OCR','Python','GCP'] },
-    { n:'005', sector:'META', title:'企業向けバーチャル展示・オンライン研修プラットフォーム', tech:['Three.js','WebXR'] },
+    { n:'001', sector:'GOV', title:'地方公共団体向け 電子申請・窓口DXシステム構築', tech:['Firebase','GCP','React'], img:'assets/case-01.png' },
+    { n:'002', sector:'ENTERPRISE', title:'音楽教室向け レッスン予約・講師割当・締め作業自動化システム', tech:['予約管理','自動化','スプレッドシート連携'], img:'assets/case-02.png' },
+    { n:'003', sector:'ENTERPRISE', title:'小売業EC基盤 / 受発注・在庫の自動化', tech:['Next.js','Cloud Run'], img:'assets/case-03.png' },
+    { n:'004', sector:'AI', title:'OCRを活用した書類読み取り・データ入力自動化', tech:['OCR','Python','GCP'], img:'assets/case-04.png' },
+    { n:'005', sector:'META', title:'企業向けバーチャル展示・オンライン研修プラットフォーム', tech:['Three.js','WebXR'], img:'assets/case-05.png' },
   ];
+
+  const doubled = [...cases, ...cases];
+
   return (
-    <section className="section section-tight">
+    <section className="section section-tight" style={{overflow:'hidden'}}>
       <div className="container">
         <div className="section-header split">
           <div>
@@ -1394,18 +1457,123 @@ const CasesTeaser = () => {
             すべて見る <Icon path={ICONS.arrow} size={14} />
           </a>
         </div>
-        <div className="cases-list">
-          {cases.map(c => (
-            <a href="cases.html" className="case-row" key={c.n}>
-              <span className="case-num">{c.n}</span>
-              <span className="case-sector">{c.sector}</span>
-              <div className="case-title">{c.title}</div>
-              <div className="case-tech">{c.tech.map(t => <span key={t}>{t}</span>)}</div>
-              <span className="case-arrow"><Icon path={ICONS.arrow} size={16}/></span>
+      </div>
+
+      <div style={{position:'relative', width:'100%'}}>
+        <div style={{
+          display:'flex',
+          gap:'24px',
+          animation:'scroll-left 30s linear infinite',
+          width:'max-content',
+          padding:'8px 0 24px',
+        }}>
+          {doubled.map((c, i) => (
+            <a
+              key={i}
+              href="cases.html"
+              className="cases-scroll-card"
+              style={{
+                display:'flex',
+                flexDirection:'column',
+                width:'360px',
+                flexShrink:0,
+                background:'var(--abyss)',
+                border:'1px solid var(--line)',
+                borderRadius:'var(--radius-lg)',
+                overflow:'hidden',
+                textDecoration:'none',
+                transition:'all 0.3s var(--ease-orbital)',
+                boxShadow:'var(--inner-catch)',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = 'var(--line-signal)';
+                e.currentTarget.style.boxShadow = 'var(--glow-md)';
+                e.currentTarget.parentElement.parentElement.style.animationPlayState = 'paused';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = 'var(--line)';
+                e.currentTarget.style.boxShadow = 'var(--inner-catch)';
+                e.currentTarget.parentElement.parentElement.style.animationPlayState = 'running';
+              }}
+            >
+              <div style={{
+                width:'100%',
+                height:'200px',
+                overflow:'hidden',
+                background:'var(--deep-space)',
+                position:'relative',
+              }}>
+                <img
+                  src={c.img}
+                  alt={c.title}
+                  style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}}
+                  onError={e => { e.target.style.display='none'; }}
+                />
+                <div style={{
+                  position:'absolute',
+                  top:'12px',
+                  left:'12px',
+                  fontFamily:'var(--font-mono)',
+                  fontSize:'10px',
+                  letterSpacing:'0.14em',
+                  color:'var(--plasma-cyan)',
+                  background:'rgba(4,7,18,0.7)',
+                  padding:'4px 10px',
+                  borderRadius:'var(--radius-sm)',
+                  backdropFilter:'blur(8px)',
+                }}>{c.sector}</div>
+              </div>
+              <div style={{padding:'24px', display:'flex', flexDirection:'column', gap:'16px'}}>
+                <div style={{
+                  fontFamily:'var(--font-mono)',
+                  fontSize:'11px',
+                  letterSpacing:'0.14em',
+                  color:'var(--plasma-cyan)',
+                }}>{c.n}</div>
+                <div style={{
+                  fontSize:'16px',
+                  color:'var(--fg)',
+                  lineHeight:1.5,
+                  fontWeight:500,
+                }}>{c.title}</div>
+                <div style={{display:'flex', flexWrap:'wrap', gap:'6px'}}>
+                  {c.tech.map(t => (
+                    <span key={t} style={{
+                      fontFamily:'var(--font-mono)',
+                      fontSize:'10px',
+                      color:'var(--fg-2)',
+                      padding:'3px 8px',
+                      border:'1px solid var(--line)',
+                      borderRadius:'var(--radius-sm)',
+                      letterSpacing:'0.06em',
+                    }}>{t}</span>
+                  ))}
+                </div>
+              </div>
             </a>
           ))}
         </div>
       </div>
+
+      <style>{`
+        @keyframes scroll-left {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        @media (max-width: 768px) {
+          .cases-scroll-card {
+            width: 280px !important;
+          }
+          .cases-scroll-card img {
+            height: 160px !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .cases-scroll-card {
+            width: 240px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

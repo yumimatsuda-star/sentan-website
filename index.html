@@ -1708,6 +1708,234 @@ const WhatWeDo = () => (
   </section>
 );
 
+const ServicesDetail = () => {
+  const [visible, setVisible] = React.useState([]);
+  const refs = React.useRef([]);
+
+  React.useEffect(() => {
+    const observers = refs.current.map((ref, i) => {
+      if (!ref) return null;
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setVisible(v => [...new Set([...v, i])]);
+          }
+        },
+        { threshold: 0.15 }
+      );
+      obs.observe(ref);
+      return obs;
+    });
+    return () => observers.forEach(o => o && o.disconnect());
+  }, []);
+
+  const active = [
+    {
+      n:'01', name:'システム開発', img:'assets/srv-system.png',
+      desc:'お客様の業務に完全に合わせた、オリジナルシステムを構築します。予約管理、業務自動化、社内DXまで、要件定義から運用保守まで一貫対応。',
+      tags:['完全オリジナル', '要件定義〜保守', 'GCP / Firebase'],
+    },
+    {
+      n:'02', name:'ECサイト・ホームページ制作', img:'assets/srv-ec.png',
+      desc:'集客を意識したコーポレートサイトから、決済・在庫管理まで対応したECサイトまで。デザインから実装・保守まで自社で完結します。',
+      tags:['EC構築', 'LP / コーポレート', 'CMS導入'],
+    },
+    {
+      n:'03', name:'研修', img:'assets/srv-training.png',
+      desc:'ChatGPT・Geminiなどの生成AI活用研修から、業務DX・ITリテラシー研修まで。eラーニング教材の制作も対応しています。',
+      tags:['AI活用研修', 'DX研修', 'eラーニング'],
+    },
+    {
+      n:'04', name:'補助金を活用したDX取り組み', img:'assets/srv-subsidy.png',
+      desc:'IT導入補助金など各種補助金を活用し、初期費用を抑えたDX導入をサポート。申請から導入・運用まで伴走します。',
+      tags:['IT導入補助金', '申請サポート', 'DX導入'],
+    },
+  ];
+
+  const coming = [
+    {
+      n:'05', name:'予約販売サイト', sub:'SaaS プロダクト', img:'assets/srv-saas1.png',
+      desc:'飲食・教室・サロンなど、予約と販売を一元管理できるSaaSを開発中。月額制で手軽に導入できます。',
+    },
+    {
+      n:'06', name:'AI受発注システム', sub:'SaaS プロダクト', img:'assets/srv-saas2.png',
+      desc:'AIを活用した受発注・在庫管理SaaSを開発中。FAX・電話での受注作業をデジタル化します。',
+    },
+  ];
+
+  return (
+    <section className="section" id="services-detail" style={{borderTop:'1px solid var(--line)'}}>
+      <div className="container">
+        <div className="section-header">
+          <div className="eyebrow">SERVICES — 03</div>
+          <h2 className="section-title">取り扱い<em>サービス</em></h2>
+        </div>
+
+        <div style={{
+          display:'grid',
+          gridTemplateColumns:'repeat(2, 1fr)',
+          gap:'20px',
+          marginBottom:'20px',
+        }}>
+          {active.map((s, i) => (
+            <div
+              key={s.n}
+              ref={el => refs.current[i] = el}
+              style={{
+                background:'var(--abyss)',
+                border:'1px solid var(--line)',
+                borderRadius:'var(--radius-lg)',
+                overflow:'hidden',
+                boxShadow:'var(--inner-catch)',
+                transition:'all 0.4s cubic-bezier(0.2,0.7,0.1,1)',
+                opacity: visible.includes(i) ? 1 : 0,
+                transform: visible.includes(i) ? 'translateY(0)' : 'translateY(32px)',
+                transitionDelay: `${i * 0.1}s`,
+                cursor:'pointer',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = 'var(--line-signal)';
+                e.currentTarget.style.boxShadow = 'var(--glow-md)';
+                e.currentTarget.style.transform = 'translateY(-4px)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = 'var(--line)';
+                e.currentTarget.style.boxShadow = 'var(--inner-catch)';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
+            >
+              <div style={{
+                width:'100%', height:'200px', overflow:'hidden',
+                background:'var(--deep-space)', position:'relative',
+              }}>
+                <img src={s.img} alt={s.name}
+                  style={{width:'100%', height:'100%', objectFit:'cover', objectPosition:'center', display:'block',
+                    transition:'transform 0.5s ease'}}
+                  onMouseEnter={e => e.target.style.transform = 'scale(1.05)'}
+                  onMouseLeave={e => e.target.style.transform = 'scale(1)'}
+                  onError={e => e.target.style.display='none'}
+                />
+                <div style={{
+                  position:'absolute', top:'12px', left:'12px',
+                  fontFamily:'var(--font-mono)', fontSize:'11px', letterSpacing:'0.14em',
+                  color:'var(--plasma-cyan)', background:'rgba(4,7,18,0.75)',
+                  padding:'4px 10px', borderRadius:'var(--radius-sm)', backdropFilter:'blur(8px)',
+                }}>{s.n}</div>
+              </div>
+              <div style={{padding:'28px', display:'flex', flexDirection:'column', gap:'14px'}}>
+                <h3 style={{
+                  fontFamily:'var(--font-display)', fontSize:'20px', fontWeight:500,
+                  color:'var(--fg)', lineHeight:1.3, margin:0,
+                }}>{s.name}</h3>
+                <p style={{fontSize:'14px', lineHeight:1.8, color:'var(--fg-2)', margin:0}}>{s.desc}</p>
+                <div style={{display:'flex', flexWrap:'wrap', gap:'6px', marginTop:'4px'}}>
+                  {s.tags.map(t => (
+                    <span key={t} style={{
+                      fontFamily:'var(--font-mono)', fontSize:'10px', letterSpacing:'0.08em',
+                      color:'var(--fg-3)', padding:'3px 10px',
+                      border:'1px solid var(--line-strong)', borderRadius:'var(--radius-sm)',
+                    }}>{t}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{
+          display:'flex', alignItems:'center', gap:'16px', margin:'40px 0 20px',
+        }}>
+          <div style={{flex:1, height:'1px', background:'var(--line)'}} />
+          <div style={{
+            fontFamily:'var(--font-mono)', fontSize:'11px', letterSpacing:'0.2em',
+            color:'var(--plasma-cyan)', padding:'6px 16px',
+            border:'1px solid var(--line-signal)', borderRadius:'var(--radius-full)',
+            animation:'coming-soon-pulse 2.5s ease-in-out infinite',
+          }}>COMING SOON</div>
+          <div style={{flex:1, height:'1px', background:'var(--line)'}} />
+        </div>
+
+        <div style={{
+          display:'grid',
+          gridTemplateColumns:'repeat(2, 1fr)',
+          gap:'20px',
+        }}>
+          {coming.map((s, i) => (
+            <div
+              key={s.n}
+              ref={el => refs.current[active.length + i] = el}
+              style={{
+                background:'rgba(11,20,38,0.5)',
+                border:'1px solid var(--line)',
+                borderRadius:'var(--radius-lg)',
+                overflow:'hidden',
+                boxShadow:'var(--inner-catch)',
+                opacity: visible.includes(active.length + i) ? 0.75 : 0,
+                transform: visible.includes(active.length + i) ? 'translateY(0)' : 'translateY(32px)',
+                transition:`all 0.4s cubic-bezier(0.2,0.7,0.1,1) ${(active.length + i) * 0.1}s`,
+                position:'relative',
+              }}
+            >
+              <div style={{
+                position:'absolute', inset:0, zIndex:3,
+                background:'rgba(4,7,18,0.45)',
+                backdropFilter:'blur(1px)',
+                display:'flex', flexDirection:'column',
+                alignItems:'center', justifyContent:'center', gap:'8px',
+              }}>
+                <div style={{
+                  fontFamily:'var(--font-mono)', fontSize:'13px', letterSpacing:'0.2em',
+                  color:'var(--plasma-cyan)', fontWeight:600,
+                  textShadow:'0 0 20px rgba(92,225,255,0.6)',
+                }}>COMING SOON</div>
+                <div style={{
+                  fontFamily:'var(--font-mono)', fontSize:'10px', letterSpacing:'0.12em',
+                  color:'var(--fg-3)',
+                }}>開発中</div>
+              </div>
+
+              <div style={{
+                width:'100%', height:'180px', overflow:'hidden',
+                background:'var(--deep-space)', position:'relative',
+              }}>
+                <img src={s.img} alt={s.name}
+                  style={{width:'100%', height:'100%', objectFit:'cover',
+                    display:'block', filter:'grayscale(40%) brightness(0.6)'}}
+                  onError={e => e.target.style.display='none'}
+                />
+              </div>
+              <div style={{padding:'24px', display:'flex', flexDirection:'column', gap:'10px'}}>
+                <div style={{
+                  fontFamily:'var(--font-mono)', fontSize:'10px', letterSpacing:'0.16em',
+                  color:'var(--fg-3)', textTransform:'uppercase',
+                }}>{s.sub}</div>
+                <h3 style={{
+                  fontFamily:'var(--font-display)', fontSize:'18px', fontWeight:500,
+                  color:'var(--fg-3)', lineHeight:1.3, margin:0,
+                }}>{s.name}</h3>
+                <p style={{fontSize:'13px', lineHeight:1.75, color:'var(--fg-3)', margin:0}}>{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes coming-soon-pulse {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(92,225,255,0.4); }
+          50% { box-shadow: 0 0 0 6px rgba(92,225,255,0); }
+        }
+        @media (max-width: 768px) {
+          #services-detail .container > div:nth-child(2),
+          #services-detail .container > div:last-child {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
+    </section>
+  );
+};
+
 /* ================= Approach ================= */
 const Approach = () => {
   const steps = [
@@ -1775,6 +2003,7 @@ function App() {
       <WhatWeDo />
       <ServicesSummary />
       <CasesTeaser />
+      <ServicesDetail />
       <Approach />
       <Stats />
       <CTASection />

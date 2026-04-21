@@ -1402,8 +1402,8 @@ const ServicesSummary = () => {
                   fontSize:'11px',
                   lineHeight:1.7,
                   color:'var(--fg-3)',
-                  opacity: hovered === i ? 1 : 0,
-                  transform: hovered === i ? 'translateY(0)' : 'translateY(4px)',
+                  opacity: 1,
+                  transform: 'translateY(0)',
                   transition:'all 0.3s',
                   maxWidth:'140px',
                 }}>{s.desc}</div>
@@ -1421,11 +1421,22 @@ const ServicesSummary = () => {
         @media (max-width: 768px) {
           #services .container > div:last-child {
             grid-template-columns: repeat(2, 1fr) !important;
+            max-width: 520px !important;
+          }
+          #services .container > div:last-child > div > div {
+            width: 180px !important;
+            height: 180px !important;
           }
         }
         @media (max-width: 480px) {
           #services .container > div:last-child {
-            grid-template-columns: 1fr !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            max-width: 360px !important;
+          }
+          #services .container > div:last-child > div > div {
+            width: 150px !important;
+            height: 150px !important;
+            font-size: 13px !important;
           }
         }
       `}</style>

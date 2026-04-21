@@ -851,12 +851,42 @@ body[data-tone="jp"] .cta-en { display: none; }
   .case-row { grid-template-columns: 40px 1fr 32px; }
   .case-row .case-title + .case-tech, .case-row .case-sector { display: none; }
   .info-row { grid-template-columns: 1fr; gap: 6px; }
+  .footer-top { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  /* Hero */
+  .hero { padding: 40px 0; min-height: auto; }
+  .hero-content { grid-template-columns: 1fr !important; gap: 40px; }
+  .hero-title { font-size: clamp(32px, 8vw, 52px) !important; }
+  .hero-right { display: none; }
+
+  /* WhatWeDo */
+  .whatwedo-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .whatwedo-visual { height: 280px !important; }
+
+  /* Approach */
+  .approach-grid { grid-template-columns: 1fr 1fr !important; }
+
+  /* Stats */
+  .stats-grid { grid-template-columns: 1fr 1fr !important; }
+  .stat { border-right: none !important; border-bottom: 1px solid var(--line); }
+
+  /* Footer */
+  .footer-grid { grid-template-columns: 1fr 1fr !important; }
+  .footer-top { grid-template-columns: 1fr !important; }
 }
 @media (max-width: 620px) {
-  .services-grid, .approach-grid, .team-grid, .tech-grid, .security-grid,
-  .case-detail, .footer-grid, .stats-grid, .roster { grid-template-columns: 1fr; }
+  .services-grid, .team-grid, .tech-grid, .security-grid,
+  .case-detail, .roster { grid-template-columns: 1fr; }
+  .approach-grid { grid-template-columns: 1fr !important; }
+  .stats-grid { grid-template-columns: 1fr 1fr !important; }
+  .footer-grid { grid-template-columns: 1fr 1fr !important; }
   .form-row.two, .form-topic { grid-template-columns: 1fr; }
-  .container { padding: 0 20px; }
+  .container { padding: 0 16px; }
+  .hero-title { font-size: clamp(28px, 8vw, 44px) !important; }
+  .section { padding: 60px 0; }
+  .section-tight { padding: 48px 0; }
+  .eyebrow { font-size: 13px !important; }
 }
 
 a { text-decoration: none !important; border-bottom: none !important; }
@@ -1615,7 +1645,7 @@ const WhatWeDo = () => (
   <section className="section" style={{borderTop:'1px solid var(--line)', borderBottom:'1px solid var(--line)', overflow:'hidden'}}>
     <div className="container">
       <div className="eyebrow" style={{marginBottom:'32px'}}>WHAT WE DO</div>
-      <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'80px', alignItems:'center'}}>
+      <div className="whatwedo-grid" style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'80px', alignItems:'center'}}>
         <div>
           <h2 style={{
             fontFamily:'var(--font-display)',
@@ -1639,7 +1669,7 @@ const WhatWeDo = () => (
             </p>
           </div>
         </div>
-        <div style={{position:'relative', height:'420px', pointerEvents:'none', display:'flex', alignItems:'center', justifyContent:'center'}}>
+        <div className="whatwedo-visual" style={{position:'relative', height:'420px', pointerEvents:'none', display:'flex', alignItems:'center', justifyContent:'center'}}>
           <svg viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg"
             style={{width:'100%', height:'100%', position:'absolute', inset:0, animation:'slow-rotate 60s linear infinite'}}>
             <defs>

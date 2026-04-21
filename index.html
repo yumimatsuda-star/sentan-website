@@ -1336,6 +1336,8 @@ const ServicesSummary = () => {
           gap:'0',
           maxWidth:'780px',
           margin:'0 auto',
+          justifyItems:'center',
+          alignItems:'center',
         }}>
           {services.map((s, i) => (
             <div
@@ -1366,12 +1368,13 @@ const ServicesSummary = () => {
                 flexDirection:'column',
                 alignItems:'center',
                 justifyContent:'center',
-                gap:'12px',
+                gap:'10px',
                 cursor:'pointer',
                 transition:'all 0.35s cubic-bezier(0.2, 0.7, 0.1, 1)',
                 transform: hovered === i ? 'scale(1.08)' : 'scale(1)',
                 zIndex: hovered === i ? 10 : 1,
-                padding:'32px',
+                padding:'28px',
+                paddingTop:'36px',
                 textAlign:'center',
                 textDecoration:'none',
               }}

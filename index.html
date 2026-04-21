@@ -1502,11 +1502,12 @@ const CasesTeaser = () => {
                 overflow:'hidden',
                 background:'var(--deep-space)',
                 position:'relative',
+                flexShrink:0,
               }}>
                 <img
                   src={c.img}
                   alt={c.title}
-                  style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}}
+                  style={{width:'100%', height:'100%', objectFit:'cover', objectPosition:'center top', display:'block'}}
                   onError={e => { e.target.style.display='none'; }}
                 />
                 <div style={{
@@ -1564,13 +1565,16 @@ const CasesTeaser = () => {
           .cases-scroll-card {
             width: 280px !important;
           }
-          .cases-scroll-card img {
+          .cases-scroll-card > div:first-child {
             height: 160px !important;
           }
         }
         @media (max-width: 480px) {
           .cases-scroll-card {
             width: 240px !important;
+          }
+          .cases-scroll-card > div:first-child {
+            height: 140px !important;
           }
         }
       `}</style>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>採用情報 — 先端AIロボテック</title>
+<link rel="icon" href="assets/logo-mark.svg"/>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
+:root {
+  --void: #040712;
+  --abyss: #0B1426;
+  --plasma-cyan: #5CE1FF;
+  --fg: #E6EEFF;
+  --fg-2: #B8C7E8;
+  --fg-3: #7A89B0;
+  --line: rgba(230,238,255,0.08);
+  --line-signal: rgba(92,225,255,0.40);
+  --font-display: "Noto Serif JP", serif;
+  --font-body: "Noto Sans JP", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--void); color: var(--fg); font-family: var(--font-body); min-height: 100vh; }
+a { text-decoration: none; color: inherit; }
+</style>
+</head>
+<body>
+<div style="min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px; position:relative; overflow:hidden;">
+
+  <!-- 背景グロー -->
+  <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:600px; height:600px; background:radial-gradient(circle, rgba(92,225,255,0.06) 0%, transparent 70%); pointer-events:none;"></div>
+
+  <!-- ロゴ -->
+  <a href="index.html" style="position:absolute; top:32px; left:32px; display:flex; align-items:center; gap:10px;">
+    <img src="assets/logo-mark.svg" width="28" height="28" alt="logo"/>
+    <div>
+      <div style="font-size:14px; font-weight:700; font-family:var(--font-display);">先端AIロボテック</div>
+      <div style="font-size:9px; letter-spacing:0.22em; color:var(--plasma-cyan); font-family:var(--font-mono);">SENTAN · AI · ROBOTECH</div>
+    </div>
+  </a>
+
+  <!-- メインコンテンツ -->
+  <div style="position:relative; z-index:2; max-width:560px;">
+    <div style="font-family:var(--font-mono); font-size:11px; letter-spacing:0.22em; color:var(--plasma-cyan); text-transform:uppercase; margin-bottom:24px;">
+      RECRUIT
+    </div>
+
+    <h1 style="font-family:var(--font-display); font-size:clamp(36px,6vw,64px); font-weight:300; line-height:1.1; letter-spacing:-0.02em; margin-bottom:20px;">
+      採用情報、<br/>準備中です。
+    </h1>
+
+    <p style="font-size:15px; line-height:1.9; color:var(--fg-2); margin-bottom:40px;">
+      現在、採用ページを準備しています。<br/>
+      お問い合わせフォームよりご連絡いただければ、<br/>
+      採用に関する情報をお送りします。
+    </p>
+
+    <a href="contact.html" style="display:inline-flex; align-items:center; gap:8px; background:var(--plasma-cyan); color:#041119; padding:14px 28px; border-radius:6px; font-size:14px; font-weight:500; font-family:var(--font-display); transition:all 0.2s;">
+      お問い合わせはこちら →
+    </a>
+
+    <div style="margin-top:48px;">
+      <a href="index.html" style="font-family:var(--font-mono); font-size:12px; letter-spacing:0.1em; color:var(--fg-3); border-bottom:1px solid rgba(122,137,176,0.3); padding-bottom:2px;">
+        ← トップページに戻る
+      </a>
+    </div>
+  </div>
+
+  <!-- 装飾ライン -->
+  <div style="position:absolute; bottom:0; left:0; right:0; height:1px; background:linear-gradient(90deg, transparent, var(--plasma-cyan), transparent); opacity:0.3;"></div>
+</div>
+</body>
+</html>

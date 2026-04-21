@@ -1433,6 +1433,151 @@ const HeroToast = () => {
   );
 };
 
+const RecruitBanner = () => {
+  const texts = [
+    'エンジニア募集中',
+    'フルスタックエンジニア / フロントエンドエンジニア',
+    '一緒に現場を変えませんか？',
+    '詳細はこちら →',
+    'エンジニア募集中',
+    'フルスタックエンジニア / フロントエンドエンジニア',
+    '一緒に現場を変えませんか？',
+    '詳細はこちら →',
+  ];
+
+  return (
+    <>
+      <style>{`
+        .recruit-banner-vertical {
+          position: fixed;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 40;
+          width: 28px;
+          height: 320px;
+          overflow: hidden;
+          cursor: pointer;
+        }
+        .recruit-banner-vertical:hover .recruit-track-v {
+          animation-play-state: paused;
+        }
+        .recruit-track-v {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+          animation: scroll-down 12s linear infinite;
+          padding: 8px 0;
+        }
+        .recruit-text-v {
+          writing-mode: vertical-rl;
+          text-orientation: mixed;
+          font-family: var(--font-mono);
+          font-size: 10px;
+          letter-spacing: 0.14em;
+          color: var(--plasma-cyan);
+          white-space: nowrap;
+          opacity: 0.85;
+        }
+        .recruit-bar-v {
+          position: fixed;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 39;
+          width: 28px;
+          height: 320px;
+          background: rgba(11,20,38,0.85);
+          backdrop-filter: blur(12px);
+          border-right: 1px solid var(--line-signal);
+          border-top: 1px solid rgba(92,225,255,0.15);
+          border-bottom: 1px solid rgba(92,225,255,0.15);
+          border-radius: 0 6px 6px 0;
+        }
+        @keyframes scroll-down {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(-50%); }
+        }
+
+        /* スマホ：上部横長バナー */
+        .recruit-banner-horizontal {
+          display: none;
+          position: fixed;
+          top: 64px;
+          left: 0;
+          right: 0;
+          z-index: 40;
+          height: 28px;
+          overflow: hidden;
+          cursor: pointer;
+        }
+        .recruit-bar-h {
+          position: fixed;
+          top: 64px;
+          left: 0;
+          right: 0;
+          z-index: 39;
+          height: 28px;
+          background: rgba(11,20,38,0.9);
+          backdrop-filter: blur(12px);
+          border-bottom: 1px solid var(--line-signal);
+          display: none;
+        }
+        .recruit-track-h {
+          display: flex;
+          gap: 48px;
+          animation: scroll-left-recruit 18s linear infinite;
+          width: max-content;
+          padding: 0 24px;
+          align-items: center;
+          height: 100%;
+        }
+        .recruit-banner-horizontal:hover .recruit-track-h {
+          animation-play-state: paused;
+        }
+        .recruit-text-h {
+          font-family: var(--font-mono);
+          font-size: 10px;
+          letter-spacing: 0.14em;
+          color: var(--plasma-cyan);
+          white-space: nowrap;
+          line-height: 28px;
+          opacity: 0.85;
+        }
+        @keyframes scroll-left-recruit {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+
+        @media (max-width: 768px) {
+          .recruit-banner-vertical, .recruit-bar-v { display: none !important; }
+          .recruit-banner-horizontal, .recruit-bar-h { display: block !important; }
+        }
+      `}</style>
+
+      {/* PC：縦バナー */}
+      <div className="recruit-bar-v" />
+      <a href="recruit.html" className="recruit-banner-vertical">
+        <div className="recruit-track-v">
+          {texts.map((t, i) => (
+            <span key={i} className="recruit-text-v">{t}</span>
+          ))}
+        </div>
+      </a>
+
+      {/* スマホ：横バナー */}
+      <div className="recruit-bar-h" />
+      <a href="recruit.html" className="recruit-banner-horizontal">
+        <div className="recruit-track-h">
+          {texts.map((t, i) => (
+            <span key={i} className="recruit-text-h">{t}</span>
+          ))}
+        </div>
+      </a>
+    </>
+  );
+};
+
 /* ================= Hero ================= */
 const Hero = () => {
   const variant = document.body.getAttribute('data-hero') || 'telemetry';
@@ -2159,6 +2304,7 @@ function App() {
   return (
     <>
       <Nav active="index.html" />
+      <RecruitBanner />
       <HeroToast />
       <Hero />
       <WhatWeDo />

@@ -1281,6 +1281,138 @@ const TelemetryDashboard = () => {
   );
 };
 
+const HeroToast = () => {
+  const [visible, setVisible] = React.useState(false);
+  const [dismissed, setDismissed] = React.useState(false);
+
+  React.useEffect(() => {
+    // 2.5秒後に登場
+    const showTimer = setTimeout(() => {
+      if (!dismissed) setVisible(true);
+    }, 2500);
+    return () => clearTimeout(showTimer);
+  }, []);
+
+  React.useEffect(() => {
+    // ヒーローセクションを過ぎたら消える
+    const handleScroll = () => {
+      const hero = document.querySelector('.hero');
+      if (!hero) return;
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      if (heroBottom < 0) {
+        setVisible(false);
+      } else if (!dismissed) {
+        setVisible(true);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [dismissed]);
+
+  const handleDismiss = () => {
+    setDismissed(true);
+    setVisible(false);
+  };
+
+  return (
+    <div style={{
+      position:'fixed',
+      bottom:'32px',
+      right:'32px',
+      zIndex:90,
+      width:'300px',
+      background:'rgba(11,20,38,0.92)',
+      backdropFilter:'blur(20px)',
+      WebkitBackdropFilter:'blur(20px)',
+      border:'1px solid var(--line-signal)',
+      borderRadius:'var(--radius-lg)',
+      boxShadow:'var(--glow-md), 0 24px 48px rgba(0,0,0,0.5)',
+      padding:'20px',
+      transform: visible ? 'translateY(0)' : 'translateY(120px)',
+      opacity: visible ? 1 : 0,
+      transition:'all 0.5s cubic-bezier(0.2, 0.7, 0.1, 1)',
+      pointerEvents: visible ? 'auto' : 'none',
+    }}>
+      {/* 閉じるボタン */}
+      <button
+        onClick={handleDismiss}
+        style={{
+          position:'absolute',
+          top:'12px',
+          right:'12px',
+          background:'none',
+          border:'none',
+          color:'var(--fg-3)',
+          cursor:'pointer',
+          padding:'4px',
+          lineHeight:1,
+          fontSize:'16px',
+        }}
+      >✕</button>
+
+      {/* ヘッダー */}
+      <div style={{
+        display:'flex',
+        alignItems:'center',
+        gap:'8px',
+        marginBottom:'12px',
+      }}>
+        <div style={{
+          width:'8px',
+          height:'8px',
+          borderRadius:'50%',
+          background:'var(--plasma-cyan)',
+          boxShadow:'0 0 8px var(--plasma-cyan)',
+          animation:'pulse 1.8s ease-in-out infinite',
+          flexShrink:0,
+        }}/>
+        <div style={{
+          fontFamily:'var(--font-mono)',
+          fontSize:'11px',
+          letterSpacing:'0.16em',
+          color:'var(--plasma-cyan)',
+          textTransform:'uppercase',
+        }}>ITよろず相談 受付中</div>
+      </div>
+
+      {/* 本文 */}
+      <p style={{
+        fontSize:'13px',
+        lineHeight:1.8,
+        color:'var(--fg-2)',
+        margin:'0 0 16px',
+      }}>
+        補助金を活用したDX導入、<br/>
+        まずは30分の無料相談から。
+      </p>
+
+      {/* ボタン */}
+      <a
+        href="contact.html"
+        style={{
+          display:'flex',
+          alignItems:'center',
+          justifyContent:'space-between',
+          background:'var(--plasma-cyan)',
+          color:'var(--signal-on)',
+          borderRadius:'var(--radius-md)',
+          padding:'10px 16px',
+          fontSize:'13px',
+          fontWeight:500,
+          fontFamily:'var(--font-display)',
+          textDecoration:'none',
+          transition:'all 0.2s',
+        }}
+        onMouseEnter={e => e.currentTarget.style.background = 'var(--signal-hover)'}
+        onMouseLeave={e => e.currentTarget.style.background = 'var(--plasma-cyan)'}
+      >
+        <span>相談してみる</span>
+        <span>→</span>
+      </a>
+    </div>
+  );
+};
+
 /* ================= Hero ================= */
 const Hero = () => {
   const variant = document.body.getAttribute('data-hero') || 'telemetry';
@@ -1999,6 +2131,7 @@ function App() {
   return (
     <>
       <Nav active="index.html" />
+      <HeroToast />
       <Hero />
       <WhatWeDo />
       <ServicesSummary />

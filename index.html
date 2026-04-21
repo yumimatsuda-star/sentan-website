@@ -1330,7 +1330,7 @@ const ServicesSummary = () => {
           <div className="eyebrow">SERVICES — 02</div>
           <h2 className="section-title">6つの <em>領域</em> で、<br/>現場の課題を設計に変える。</h2>
         </div>
-        <div style={{
+        <div id="services-circle-grid" style={{
           display:'grid',
           gridTemplateColumns:'repeat(3, 1fr)',
           gap:'0',
@@ -1419,24 +1419,23 @@ const ServicesSummary = () => {
       </div>
       <style>{`
         @media (max-width: 768px) {
-          #services .container > div:last-child {
+          #services-circle-grid {
             grid-template-columns: repeat(2, 1fr) !important;
-            max-width: 520px !important;
+            max-width: 500px !important;
           }
-          #services .container > div:last-child > div > div {
+          #services-circle-grid > div > div {
             width: 180px !important;
             height: 180px !important;
           }
         }
         @media (max-width: 480px) {
-          #services .container > div:last-child {
+          #services-circle-grid {
             grid-template-columns: repeat(2, 1fr) !important;
-            max-width: 360px !important;
+            max-width: 340px !important;
           }
-          #services .container > div:last-child > div > div {
-            width: 150px !important;
-            height: 150px !important;
-            font-size: 13px !important;
+          #services-circle-grid > div > div {
+            width: 145px !important;
+            height: 145px !important;
           }
         }
       `}</style>

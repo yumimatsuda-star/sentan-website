@@ -1707,7 +1707,7 @@ const Hero = () => {
   const [videoErr, setVideoErr] = useState(false);
   const videoSrc = (document.body.getAttribute('data-hero-video-src')
                     || 'assets/hero-bg.mp4');
-  const [inHero, setInHero] = React.useState(true);
+  const [inHero, setInHero] = React.useState(false);
 
   React.useEffect(() => {
     const heroEl = document.querySelector('section.hero');

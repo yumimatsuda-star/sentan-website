@@ -1707,6 +1707,19 @@ const Hero = () => {
   const [videoErr, setVideoErr] = useState(false);
   const videoSrc = (document.body.getAttribute('data-hero-video-src')
                     || 'assets/hero-bg.mp4');
+  const [inHero, setInHero] = React.useState(true);
+
+  React.useEffect(() => {
+    const heroEl = document.querySelector('section.hero');
+    if (heroEl) {
+      const observer = new IntersectionObserver(
+        ([entry]) => { setInHero(entry.isIntersecting); },
+        { threshold: 0.05 }
+      );
+      observer.observe(heroEl);
+      return () => observer.disconnect();
+    }
+  }, []);
   return (
     <section className="hero" data-variant={variant}>
       {videoOn && !videoErr && (
@@ -1774,6 +1787,9 @@ const Hero = () => {
               fontWeight: 500,
               textTransform: 'uppercase',
               boxShadow: '0 0 12px rgba(92,225,255,0.15)',
+              opacity: inHero ? 1 : 0,
+              pointerEvents: inHero ? 'auto' : 'none',
+              transition: 'opacity 0.5s cubic-bezier(0.2, 0.7, 0.1, 1)',
             };
             return (
               <div style={badgeStyle}>

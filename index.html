@@ -946,6 +946,27 @@ body[data-tone="jp"] .cta-en { display: none; }
   .approach-grid { grid-template-columns: 1fr !important; }
   .stats-grid { grid-template-columns: 1fr 1fr !important; }
   .footer-grid { grid-template-columns: 1fr 1fr !important; }
+  .site-footer {
+    padding: 48px 0 24px;
+  }
+  .footer-top {
+    gap: 32px;
+    padding-bottom: 32px;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 24px;
+  }
+  .footer-brand {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+    align-items: center;
+  }
   .form-row.two, .form-topic { grid-template-columns: 1fr; }
   .container { padding: 0 16px; }
   .hero-title { font-size: clamp(28px, 8vw, 44px) !important; }
@@ -1349,6 +1370,7 @@ const TelemetryDashboard = () => {
 const HeroToast = () => {
   const [visible, setVisible] = React.useState(false);
   const [dismissed, setDismissed] = React.useState(false);
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 620;
 
   React.useEffect(() => {
     // 2.5秒後に登場
@@ -1382,10 +1404,11 @@ const HeroToast = () => {
   return (
     <div style={{
       position:'fixed',
-      bottom:'32px',
-      right:'32px',
-      zIndex:90,
-      width:'280px',
+      bottom: isMobile ? '16px' : '32px',
+      right: isMobile ? '50%' : '32px',
+      transform: isMobile ? `translateX(50%)${visible ? '' : ' translateY(12px)'}` : (visible ? 'none' : 'translateY(12px)'),
+      zIndex: 90,
+      width: isMobile ? 'min(360px, calc(100vw - 32px))' : '280px',
       background:'rgba(11,20,38,0.88)',
       backdropFilter:'blur(24px)',
       WebkitBackdropFilter:'blur(24px)',
@@ -1401,7 +1424,6 @@ const HeroToast = () => {
         inset 0 1px 0 rgba(255,255,255,0.05)
       `,
       padding:'20px 20px 20px 18px',
-      transform: visible ? 'translateY(0)' : 'translateY(120px)',
       opacity: visible ? 1 : 0,
       transition:'all 0.5s cubic-bezier(0.2, 0.7, 0.1, 1)',
       pointerEvents: visible ? 'auto' : 'none',

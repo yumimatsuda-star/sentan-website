@@ -1369,154 +1369,73 @@ const TelemetryDashboard = () => {
 
 const HeroToast = () => {
   const [visible, setVisible] = React.useState(false);
-  const [dismissed, setDismissed] = React.useState(false);
   const isMobile = typeof window !== 'undefined' && window.innerWidth <= 620;
 
   React.useEffect(() => {
-    // 2.5秒後に登場
-    const showTimer = setTimeout(() => {
-      if (!dismissed) setVisible(true);
-    }, 2500);
-    return () => clearTimeout(showTimer);
+    const t = setTimeout(() => setVisible(true), 2800);
+    return () => clearTimeout(t);
   }, []);
 
-  React.useEffect(() => {
-    // ヒーローセクションを過ぎたら消える
-    const handleScroll = () => {
-      const hero = document.querySelector('.hero');
-      if (!hero) return;
-      const heroBottom = hero.getBoundingClientRect().bottom;
-      if (heroBottom < 0) {
-        setVisible(false);
-      } else if (!dismissed) {
-        setVisible(true);
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [dismissed]);
-
-  const handleDismiss = () => {
-    setDismissed(true);
-    setVisible(false);
-  };
-
   return (
-    <div style={{
-      position:'fixed',
-      bottom: isMobile ? '16px' : '32px',
-      right: isMobile ? '50%' : '32px',
-      transform: isMobile ? `translateX(50%)${visible ? '' : ' translateY(12px)'}` : (visible ? 'none' : 'translateY(12px)'),
-      zIndex: 90,
-      width: isMobile ? 'min(360px, calc(100vw - 32px))' : '280px',
-      background:'rgba(11,20,38,0.88)',
-      backdropFilter:'blur(24px)',
-      WebkitBackdropFilter:'blur(24px)',
-      borderRadius:'var(--radius-lg)',
-      borderTop:'1px solid rgba(92,225,255,0.15)',
-      borderRight:'1px solid rgba(92,225,255,0.1)',
-      borderBottom:'1px solid rgba(92,225,255,0.1)',
-      borderLeft:'3px solid var(--plasma-cyan)',
-      boxShadow:`
-        0 0 0 1px rgba(92,225,255,0.08),
-        0 0 30px rgba(92,225,255,0.12),
-        0 24px 48px rgba(0,0,0,0.6),
-        inset 0 1px 0 rgba(255,255,255,0.05)
-      `,
-      padding:'20px 20px 20px 18px',
-      opacity: visible ? 1 : 0,
-      transition:'all 0.5s cubic-bezier(0.2, 0.7, 0.1, 1)',
-      pointerEvents: visible ? 'auto' : 'none',
-    }}>
-      {/* 閉じるボタン */}
-      <button
-        onClick={handleDismiss}
-        style={{
-          position:'absolute',
-          top:'12px',
-          right:'12px',
-          background:'none',
-          border:'none',
-          color:'var(--fg-3)',
-          cursor:'pointer',
-          padding:'4px',
-          lineHeight:1,
-          fontSize:'16px',
-        }}
-      >✕</button>
-
-      {/* ヘッダー */}
-      <div style={{
-        marginBottom:'14px',
-      }}>
+    <a
+      href="contact.html"
+      style={{
+        position: 'fixed',
+        bottom: isMobile ? '16px' : '24px',
+        right: isMobile ? '50%' : '24px',
+        transform: isMobile
+          ? `translateX(50%)${visible ? '' : ' translateY(12px)'}`
+          : visible ? 'none' : 'translateY(12px)',
+        zIndex: 90,
+        width: isMobile ? 'min(340px, calc(100vw - 32px))' : '260px',
+        background: 'rgba(11,20,38,0.92)',
+        backdropFilter: 'blur(24px)',
+        WebkitBackdropFilter: 'blur(24px)',
+        borderRadius: 'var(--radius-lg)',
+        borderTop: '1px solid rgba(92,225,255,0.15)',
+        borderRight: '1px solid rgba(92,225,255,0.1)',
+        borderBottom: '1px solid rgba(92,225,255,0.1)',
+        borderLeft: '3px solid var(--plasma-cyan)',
+        boxShadow: '0 0 0 1px rgba(92,225,255,0.08), 0 0 30px rgba(92,225,255,0.12), 0 24px 48px rgba(0,0,0,0.6)',
+        padding: '12px 16px 12px 14px',
+        opacity: visible ? 1 : 0,
+        transition: 'all 0.5s cubic-bezier(0.2, 0.7, 0.1, 1)',
+        pointerEvents: visible ? 'auto' : 'none',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '12px',
+        textDecoration: 'none',
+        cursor: 'pointer',
+      }}
+    >
+      <div style={{ display:'flex', alignItems:'center', gap:'6px', flexShrink:0 }}>
         <div style={{
-          display:'flex',
-          alignItems:'center',
-          gap:'8px',
-          marginBottom:'6px',
-        }}>
-          <div style={{
-            width:'8px',
-            height:'8px',
-            borderRadius:'50%',
-            background:'var(--plasma-cyan)',
-            boxShadow:'0 0 8px var(--plasma-cyan)',
-            animation:'pulse 1.8s ease-in-out infinite',
-            flexShrink:0,
-          }}/>
-          <div style={{
-            fontFamily:'var(--font-mono)',
-            fontSize:'10px',
-            letterSpacing:'0.16em',
-            color:'var(--plasma-cyan)',
-            textTransform:'uppercase',
-          }}>受付中</div>
-        </div>
-        <div style={{
-          fontFamily:'var(--font-display)',
-          fontSize:'18px',
-          fontWeight:600,
-          color:'var(--fg)',
-          letterSpacing:'-0.01em',
-          lineHeight:1.2,
-        }}>ITよろず相談</div>
+          width: 7, height: 7, borderRadius: '50%',
+          background: 'var(--plasma-cyan)',
+          animation: 'pulse 1.8s ease-in-out infinite',
+        }} />
+        <span style={{
+          fontFamily: 'var(--font-mono)', fontSize: '10px',
+          letterSpacing: '0.12em', color: 'var(--plasma-cyan)',
+          textTransform: 'uppercase',
+        }}>受付中</span>
       </div>
-
-      {/* 本文 */}
-      <p style={{
-        fontSize:'13px',
-        lineHeight:1.8,
-        color:'var(--fg-2)',
-        margin:'0 0 16px',
-      }}>
-        補助金を活用したDX導入、<br/>
-        まずは30分の無料相談から。
-      </p>
-
-      {/* ボタン */}
-      <a
-        href="contact.html"
-        style={{
-          display:'flex',
-          alignItems:'center',
-          justifyContent:'space-between',
-          background:'var(--plasma-cyan)',
-          color:'var(--signal-on)',
-          borderRadius:'var(--radius-md)',
-          padding:'10px 16px',
-          fontSize:'13px',
-          fontWeight:500,
-          fontFamily:'var(--font-display)',
-          textDecoration:'none',
-          transition:'all 0.2s',
-        }}
-        onMouseEnter={e => e.currentTarget.style.background = 'var(--signal-hover)'}
-        onMouseLeave={e => e.currentTarget.style.background = 'var(--plasma-cyan)'}
-      >
-        <span>相談してみる</span>
-        <span>→</span>
-      </a>
-    </div>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{
+          fontSize: '13px', fontWeight: 600,
+          color: 'var(--fg)', letterSpacing: '-0.01em',
+          whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+        }}>ITよろず相談</div>
+        <div style={{
+          fontSize: '11px', color: 'var(--fg-3)',
+          marginTop: '2px',
+          whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+        }}>補助金活用・DX導入、30分無料</div>
+      </div>
+      <span style={{
+        color: 'var(--plasma-cyan)', fontSize: '16px', flexShrink: 0,
+      }}>→</span>
+    </a>
   );
 };
 

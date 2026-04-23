@@ -1107,6 +1107,7 @@ function App() {
   });
   const [errors, setErrors] = useState({});
   const [modal, setModal] = useState(null); // {ref}
+  const [showOptional, setShowOptional] = useState(false);
 
   const upd = (k,v) => { setForm(f => ({...f, [k]: v})); setErrors(e => ({...e, [k]: null})); };
 
@@ -1233,21 +1234,49 @@ function App() {
                 {errors.topic && <div className="form-err-msg">{errors.topic}</div>}
               </div>
 
-              <div className="form-row two">
-                <div>
-                  <label className="form-label" htmlFor="f-budget"><span>ご予算感</span><span className="opt">任意</span></label>
-                  <select id="f-budget" className="form-select" value={form.budget} onChange={e => upd('budget', e.target.value)}>
-                    <option value="">選択してください</option>
-                    {BUDGETS.map(b => <option key={b} value={b}>{b}</option>)}
-                  </select>
-                </div>
-                <div>
-                  <label className="form-label" htmlFor="f-timing"><span>ご希望時期</span><span className="opt">任意</span></label>
-                  <select id="f-timing" className="form-select" value={form.timing} onChange={e => upd('timing', e.target.value)}>
-                    <option value="">選択してください</option>
-                    {TIMINGS.map(b => <option key={b} value={b}>{b}</option>)}
-                  </select>
-                </div>
+              <div className="form-row">
+                <button
+                  type="button"
+                  onClick={() => setShowOptional(v => !v)}
+                  style={{
+                    background: 'transparent',
+                    border: '1px dashed var(--line-strong)',
+                    borderRadius: 'var(--radius-sm)',
+                    color: 'var(--fg-3)',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '11px',
+                    letterSpacing: '0.12em',
+                    padding: '10px 16px',
+                    cursor: 'pointer',
+                    width: '100%',
+                    textAlign: 'left',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    transition: 'border-color 0.2s, color 0.2s',
+                  }}
+                >
+                  <span>詳細を追加する（予算感・希望時期）</span>
+                  <span style={{ transition: 'transform 0.2s', transform: showOptional ? 'rotate(180deg)' : 'rotate(0deg)', fontSize: '14px' }}>▼</span>
+                </button>
+                {showOptional && (
+                  <div className="form-row two" style={{ marginBottom: 0, marginTop: '12px' }}>
+                    <div>
+                      <label className="form-label" htmlFor="f-budget"><span>ご予算感</span><span className="opt">任意</span></label>
+                      <select id="f-budget" className="form-select" value={form.budget} onChange={e => upd('budget', e.target.value)}>
+                        <option value="">選択してください</option>
+                        {BUDGETS.map(b => <option key={b} value={b}>{b}</option>)}
+                      </select>
+                    </div>
+                    <div>
+                      <label className="form-label" htmlFor="f-timing"><span>ご希望時期</span><span className="opt">任意</span></label>
+                      <select id="f-timing" className="form-select" value={form.timing} onChange={e => upd('timing', e.target.value)}>
+                        <option value="">選択してください</option>
+                        {TIMINGS.map(b => <option key={b} value={b}>{b}</option>)}
+                      </select>
+                    </div>
+                  </div>
+                )}
               </div>
 
               <div className="form-row">

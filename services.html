@@ -536,6 +536,12 @@ body[data-tone="jp"] .hero-en { display: none; }
 .service-card:hover { background: var(--deep-space); }
 .service-card:hover .service-num { color: var(--plasma-cyan); }
 .service-card:hover .service-arrow { opacity: 1; transform: translateX(0); }
+.service-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 64px;
+  align-items: start;
+}
 .service-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em;
   color: var(--fg-3); transition: color var(--dur-micro) var(--ease-orbital); }
 .service-icon { width: 40px; height: 40px; color: var(--plasma-cyan);
@@ -865,6 +871,10 @@ body[data-tone="jp"] .cta-en { display: none; }
 
 @media (max-width: 980px) {
   .hero-content, .mission-block, .contact-grid { grid-template-columns: 1fr; }
+  .service-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
   .services-grid, .approach-grid, .team-grid, .tech-grid, .security-grid,
   .case-detail, .footer-grid, .stats-grid, .roster { grid-template-columns: 1fr 1fr; }
   .nav-links { display: none; }
@@ -873,9 +883,20 @@ body[data-tone="jp"] .cta-en { display: none; }
   .info-row { grid-template-columns: 1fr; gap: 6px; }
 }
 @media (max-width: 620px) {
+  .service-layout {
+    gap: 24px;
+  }
+  .section-tight {
+    padding: 48px 0;
+  }
+  .service-icon {
+    width: 32px;
+    height: 32px;
+  }
   .services-grid, .approach-grid, .team-grid, .tech-grid, .security-grid,
   .case-detail, .footer-grid, .stats-grid, .roster { grid-template-columns: 1fr; }
-  .form-row.two, .form-topic { grid-template-columns: 1fr; }
+  .form-row.two { grid-template-columns: 1fr; }
+  .form-topic { grid-template-columns: repeat(2, 1fr); }
   .container { padding: 0 20px; }
 }
 </style>
@@ -1215,7 +1236,7 @@ const ServiceSection = ({s}) => (
         transform:'translateY(-50%)',
         animationDelay:`${parseInt(s.n) * 0.5}s` }} />
     <div className="container">
-      <div style={{display:'grid', gridTemplateColumns:'1fr 1.4fr', gap:'64px', alignItems:'start'}}>
+      <div className="service-layout">
         <div>
           <div className="eyebrow">{`SERVICE — ${s.n}`}</div>
           <div className="service-icon" style={{marginTop:'16px'}}><Icon path={ICONS[s.icon]} size={40}/></div>

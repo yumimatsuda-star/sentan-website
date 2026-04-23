@@ -1252,10 +1252,15 @@ const ServiceSection = ({s}) => (
           <h2 style={{fontSize:'30px', fontWeight:500, letterSpacing:'-0.02em', margin:'20px 0 8px', color:'var(--fg)'}}>{s.name}</h2>
           <p className="en-sub" style={{fontSize:'15px', marginBottom:'16px'}}>{s.en}</p>
           <div style={{display:'flex',flexWrap:'wrap',gap:'6px',marginTop:'16px'}}>
-            {s.tags.map(t => (
-              <span key={t} className={`service-tag${t === '2026年デジタル化・AI導入補助金対応' ? ' highlight' : ''}`}>{t}</span>
+            {s.tags.filter(t => t !== '2026年デジタル化・AI導入補助金対応').map(t => (
+              <span key={t} className="service-tag">{t}</span>
             ))}
           </div>
+          {s.tags.includes('2026年デジタル化・AI導入補助金対応') && (
+            <div style={{marginTop:'8px'}}>
+              <span className="service-tag highlight">2026年デジタル化・AI導入補助金対応</span>
+            </div>
+          )}
         </div>
         <div>
           <p style={{fontSize:'16px', lineHeight:1.8, color:'var(--fg-2)', marginBottom:'28px'}}>{s.desc}</p>

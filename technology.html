@@ -1172,28 +1172,17 @@ function App() {
         <div className="container">
           <div className="section-header">
             <div className="eyebrow">STACK — 01</div>
-            <h2 className="section-title">標準 <em>採用</em> している技術基盤。</h2>
+            <h2 className="section-title">技術領域と<em>採用スタック</em>例。</h2>
           </div>
           <div className="tech-grid">
             <div className="tech-card">
               <div style={{display:'flex',alignItems:'center',gap:'12px'}}>
                 <span style={{color:'var(--plasma-cyan)'}}><Icon path={ICONS.cloud} size={28}/></span>
-                <h3>Google Cloud · Firebase</h3>
+                <h3>クラウド・インフラ</h3>
               </div>
-              <p>行政・企業向けの基盤として標準採用。Firestore、Cloud Run、Cloud Functions、Cloud Storage、Identity Platformを中心に、要件に応じて構成します。</p>
+              <p>案件要件に応じてクラウド基盤を選定します。行政・企業向けにはGoogle Cloud / Firebaseを中心に、国内データ主権が求められる案件にはさくらインターネットを採用します。</p>
               <div className="tech-tags">
-                {['Firestore','Cloud Run','Cloud Functions','Identity Platform','BigQuery'].map(t =>
-                  <span key={t} className="service-tag">{t}</span>)}
-              </div>
-            </div>
-            <div className="tech-card">
-              <div style={{display:'flex',alignItems:'center',gap:'12px'}}>
-                <span style={{color:'var(--plasma-cyan)'}}><Icon path={ICONS.shield} size={28}/></span>
-                <h3>さくらインターネット</h3>
-              </div>
-              <p>政府認定ガバメントクラウド事業者として認定された国内基盤。行政案件のうち、国内データ所在・主権要件が求められる案件で採用します。</p>
-              <div className="tech-tags">
-                {['政府認定','ガバメントクラウド','国内DC'].map(t =>
+                {['Google Cloud','Firebase','さくらインターネット','Cloud Run','Cloud Functions'].map(t =>
                   <span key={t} className="service-tag">{t}</span>)}
               </div>
             </div>
@@ -1202,9 +1191,20 @@ function App() {
                 <span style={{color:'var(--plasma-cyan)'}}><Icon path={ICONS.code} size={28}/></span>
                 <h3>フロントエンド</h3>
               </div>
-              <p>アクセシビリティと日本語タイポグラフィを優先した設計。Next.js / React / TypeScript を中心に、要件により選定します。</p>
+              <p>アクセシビリティと日本語タイポグラフィを優先した設計。React / Next.js / TypeScript を中心に、要件により選定します。</p>
               <div className="tech-tags">
                 {['React','Next.js','TypeScript','Vite','Tailwind'].map(t =>
+                  <span key={t} className="service-tag">{t}</span>)}
+              </div>
+            </div>
+            <div className="tech-card">
+              <div style={{display:'flex',alignItems:'center',gap:'12px'}}>
+                <span style={{color:'var(--plasma-cyan)'}}><Icon path={ICONS.signal} size={28}/></span>
+                <h3>バックエンド・DB</h3>
+              </div>
+              <p>要件に応じてバックエンド構成を柔軟に選定。Firebase / Supabaseによるサーバーレス構成から、Node.js / Pythonによるカスタム実装まで対応します。</p>
+              <div className="tech-tags">
+                {['Node.js','Python','Firestore','Supabase','PostgreSQL'].map(t =>
                   <span key={t} className="service-tag">{t}</span>)}
               </div>
             </div>
@@ -1213,9 +1213,20 @@ function App() {
                 <span style={{color:'var(--plasma-cyan)'}}><Icon path={ICONS.cpu} size={28}/></span>
                 <h3>AI・機械学習</h3>
               </div>
-              <p>業務適合のAI活用を中心に、生成AI、文書処理、画像認識、時系列予測まで幅広く対応。PoCから本番運用までを一貫で設計します。</p>
+              <p>生成AI・文書処理・画像認識・時系列予測まで幅広く対応。PoCから本番運用までを一貫で設計します。</p>
               <div className="tech-tags">
-                {['Vertex AI','Gemini','OpenAI API','PyTorch','OCR'].map(t =>
+                {['Gemini','OpenAI API','Vertex AI','PyTorch','OCR'].map(t =>
+                  <span key={t} className="service-tag">{t}</span>)}
+              </div>
+            </div>
+            <div className="tech-card">
+              <div style={{display:'flex',alignItems:'center',gap:'12px'}}>
+                <span style={{color:'var(--plasma-cyan)'}}><Icon path={ICONS.cube} size={28}/></span>
+                <h3>3D・WebXR</h3>
+              </div>
+              <p>バーチャル展示・3D体験コンテンツ・WebXRを活用した空間制作に対応。外部専門パートナーとの連携により、企画から実装・公開まで一貫してディレクションします。</p>
+              <div className="tech-tags">
+                {['THREE.js','WebXR','WebGL','3Dモデリング連携'].map(t =>
                   <span key={t} className="service-tag">{t}</span>)}
               </div>
             </div>

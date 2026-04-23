@@ -443,6 +443,33 @@ body[data-tone="jp"] .hero-en { display: none; }
 .tm-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--nova);
   box-shadow: 0 0 8px currentColor; animation: pulse 1.8s ease-in-out infinite; }
 @keyframes pulse { 50% { opacity: 0.4; } }
+@keyframes orb-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.10; }
+  50%       { transform: scale(1.18); opacity: 0.18; }
+}
+@keyframes orb-pulse-slow {
+  0%, 100% { transform: scale(1); opacity: 0.07; }
+  50%       { transform: scale(1.22); opacity: 0.13; }
+}
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+.orb-cyan {
+  background: radial-gradient(circle, rgba(92,225,255,0.55) 0%, transparent 70%);
+  animation: orb-pulse 6s ease-in-out infinite;
+}
+.orb-purple {
+  background: radial-gradient(circle, rgba(123,97,255,0.45) 0%, transparent 70%);
+  animation: orb-pulse-slow 8s ease-in-out infinite;
+}
+.orb-cyan-sm {
+  background: radial-gradient(circle, rgba(92,225,255,0.4) 0%, transparent 70%);
+  animation: orb-pulse-slow 7s ease-in-out infinite;
+}
 .tm-time { font-family: var(--font-mono); font-size: 11px; color: var(--plasma-cyan);
   letter-spacing: 0.08em; }
 
@@ -474,7 +501,7 @@ body[data-tone="jp"] .hero-en { display: none; }
 
 /* ===================== GENERIC SECTION ===================== */
 .section { padding: var(--s-pad-section, 120px) 0; position: relative; }
-.section-tight { padding: 72px 0; }
+.section-tight { padding: 72px 0; position: relative; overflow: hidden; }
 .section-header { margin-bottom: 56px; max-width: 780px; }
 .section-title { font-family: var(--font-display); font-size: clamp(30px, 4.2vw, 48px); font-weight: 300;
   line-height: 1.1; letter-spacing: -0.02em; margin: 14px 0 16px; color: var(--fg); }
@@ -1166,6 +1193,9 @@ const SERVICES = [
 
 const ServiceSection = ({s}) => (
   <section className="section section-tight" id={s.key}>
+    <div className="orb orb-cyan-sm"
+      style={{ width:340, height:340, top:'10%', right:'-60px',
+        animationDelay:`${parseInt(s.n) * 0.8}s` }} />
     <div className="container">
       <div style={{display:'grid', gridTemplateColumns:'1fr 1.4fr', gap:'64px', alignItems:'start'}}>
         <div>
@@ -1203,6 +1233,10 @@ function App() {
     <>
       <Nav active="services.html" />
       <section className="company-hero">
+        <div className="orb orb-cyan"
+          style={{ width:600, height:600, top:'-180px', right:'-120px' }} />
+        <div className="orb orb-purple"
+          style={{ width:400, height:400, bottom:'-100px', left:'-80px' }} />
         <div className="container">
           <div className="page-crumb">
             <a href="index.html" style={{color:'var(--fg-3)',borderBottom:0}}>HOME</a>

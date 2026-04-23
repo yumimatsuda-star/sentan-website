@@ -510,6 +510,12 @@ body[data-tone="jp"] .service-en { display: none; }
 .service-tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em;
   color: var(--fg-3); padding: 3px 8px; border: 1px solid var(--line-strong);
   border-radius: var(--radius-sm); text-transform: uppercase; }
+.service-tag.highlight {
+  color: var(--plasma-cyan);
+  border-color: var(--plasma-cyan);
+  background: rgba(92,225,255,0.08);
+  font-weight: 500;
+}
 .service-arrow { position: absolute; top: 28px; right: 28px; color: var(--plasma-cyan);
   opacity: 0; transform: translateX(-6px); transition: all var(--dur-micro) var(--ease-orbital); }
 
@@ -1101,7 +1107,7 @@ const SERVICES = [
       '窓口DX（来庁予約・オンライン相談・申請案内）',
       '庁内情報共有・承認フロー',
     ],
-    tags:['Firebase','Google Cloud','ISMAP準拠'] },
+    tags:['セキュリティ要件準拠','行政文書管理','窓口DX'] },
   { n:'02', key:'enterprise', icon:'code', name:'業務システム・社内DX', en:'Business Systems & DX',
     desc:'予約システム、OCR・帳票処理、業務フロー自動化など、現場の課題をシステムで解決します。要件定義から運用保守まで、自社エンジニアが一貫対応。自社領域は内製一貫。案件要件に応じ、専門パートナーをディレクションします。',
     detail:[
@@ -1137,7 +1143,7 @@ const SERVICES = [
       'DXリテラシー研修（管理職・経営層向け）',
       '画像生成AI・デザイン活用研修',
     ],
-    tags:['eラーニング','集合研修','AI活用研修','教材制作','2026年デジタル化・AI導入補助金対応'] },
+    tags:['eラーニング','集合研修','AI活用研修','教材制作'] },
   { n:'06', key:'consult', icon:'compass', name:'ITよろず相談', en:'IT Consulting & Support',
     desc:'「何から始めればいいかわからない」という相談から、DX活用提案、補助金サポートまで対応します。ITに限らず企業の困りごとを整理し、最適な手段を一緒に考えます。',
     detail:[
@@ -1146,7 +1152,7 @@ const SERVICES = [
       '補助金・助成金の活用サポート',
       'ベンダー選定・外部連携の調整',
     ],
-    tags:['DX相談','補助金活用','IT戦略','PMO'] },
+    tags:['DX相談','補助金活用','IT戦略','PMO','2026年デジタル化・AI導入補助金対応'] },
   { n:'07', key:'metaverse', icon:'globe', name:'メタバース・3D空間制作', en:'Metaverse & 3D Spaces',
     desc:'バーチャル展示・3D体験コンテンツ・WebXRを活用した空間制作を行います。外部専門パートナーとの連携により、企画から実装・公開まで一貫してディレクションします。',
     detail:[
@@ -1168,7 +1174,9 @@ const ServiceSection = ({s}) => (
           <h2 style={{fontSize:'30px', fontWeight:500, letterSpacing:'-0.02em', margin:'20px 0 8px', color:'var(--fg)'}}>{s.name}</h2>
           <p className="en-sub" style={{fontSize:'15px', marginBottom:'16px'}}>{s.en}</p>
           <div style={{display:'flex',flexWrap:'wrap',gap:'6px',marginTop:'16px'}}>
-            {s.tags.map(t => <span key={t} className="service-tag">{t}</span>)}
+            {s.tags.map(t => (
+              <span key={t} className={`service-tag${t === '2026年デジタル化・AI導入補助金対応' ? ' highlight' : ''}`}>{t}</span>
+            ))}
           </div>
         </div>
         <div>

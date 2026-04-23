@@ -23,9 +23,23 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { background: var(--void); color: var(--fg); font-family: var(--font-body); min-height: 100vh; }
 a { text-decoration: none; color: inherit; }
+
+.hero-bg-stars-global {
+  position: fixed;
+  inset: 0;
+  background: url('assets/starfield.svg') center / cover;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body[data-theme="light"] .hero-bg-stars-global {
+  opacity: 0.08;
+}
 </style>
 </head>
 <body>
+<div class="hero-bg-stars-global"></div>
 <div style="min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px; position:relative; overflow:hidden;">
 
   <!-- 背景グロー -->

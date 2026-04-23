@@ -340,6 +340,18 @@ body[data-density="compact"] { --s-pad-section: 80px; --s-pad-hero: 72px; }
   content: ""; position: fixed; right: 0; top: 0; bottom: 0; width: 1px;
   background: var(--line); z-index: 1; pointer-events: none;
 }
+.hero-bg-stars-global {
+  position: fixed;
+  inset: 0;
+  background: url('assets/starfield.svg') center / cover;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body[data-theme="light"] .hero-bg-stars-global {
+  opacity: 0.08;
+}
 
 /* ===================== TYPE ===================== */
 h1,h2,h3,h4,h5,p,dl,dt,dd,ul,ol { margin: 0; padding: 0; }
@@ -2316,6 +2328,7 @@ const Stats = () => {
 function App() {
   return (
     <>
+      <div className="hero-bg-stars-global" />
       <Nav active="index.html" />
       <RecruitBanner />
       <HeroToast />

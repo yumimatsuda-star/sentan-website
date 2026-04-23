@@ -994,7 +994,7 @@ const CTASection = () => (
       <div className="eyebrow">CONTACT — 06</div>
       <h2 className="cta-title">現場に、<br/>次の設計を。</h2>
       <p className="cta-en">The next design, for the field.</p>
-      <p className="cta-sub">行政・企業のDX推進から、仮想空間の構築まで。<br/>30分のヒアリングから、最適な設計をご提案します。</p>
+      <p className="cta-sub">社内DXから、AIシステム、Web制作、よろず相談まで、仮想空間の構築まで。<br/>30分のヒアリングから、最適な設計をご提案します。</p>
       <div className="cta-actions">
         <a className="btn btn-primary btn-lg" href="contact.html">
           お問い合わせフォームへ <Icon path={ICONS.arrow} size={14} />
@@ -1093,25 +1093,25 @@ Object.assign(window, { Nav, Footer, CTASection, TweaksPanel, Icon, ICONS, LOGO_
 </script>
 <script type="text/babel" data-presets="react">
 const CASES = [
-  { n:'001', cat:'gov', sector:'行政システム', title:'地方公共団体向け 電子申請・窓口DXシステム',
-    body:'住民向け電子申請フォームと庁内承認ワークフローを構築。窓口の滞在時間削減と、職員の事務処理工数削減を両立しました。',
-    metrics:[['申請処理','-62%'],['滞在時間','-48%'],['年間削減','1,200h']],
+  { n:'001', cat:'gov', sector:'公共機関', title:'公共機関向け 電子手続き・窓口サポートシステム',
+    body:'電子申請フォームと庁内承認ワークフローの設計・構築をサポート。窓口対応の効率化と、事務処理の負担軽減を目指した設計を提案しました。',
+    metrics:[['対応範囲','設計〜運用'],['構築期間','約3ヶ月'],['サポート','継続中']],
     tech:['Firebase','Google Cloud','React','TypeScript'] },
   { n:'002', cat:'enterprise', sector:'小売業・EC', title:'EC基盤構築と受発注・在庫の自動化',
     body:'複数店舗・複数チャネルのEC基盤を統合。受発注から在庫同期までを自動化し、運営チームの手作業を大幅に削減。',
-    metrics:[['手作業','-78%'],['同期遅延','5分→30秒'],['売上','+22%']],
+    metrics:[['対応範囲','設計〜運用'],['自動化','受発注〜在庫'],['サポート','継続中']],
     tech:['Next.js','Cloud Run','Stripe','Firestore'] },
   { n:'003', cat:'enterprise', sector:'製造業', title:'承認ワークフロー・業務自動化システム',
     body:'複雑な稟議・承認フローを可視化し、紙・メール運用から脱却。監査ログと差し戻し履歴の一元管理を実現。',
-    metrics:[['承認時間','-54%'],['紙書類','0枚'],['監査対応','即応']],
+    metrics:[['対応範囲','設計〜運用'],['ペーパーレス','実現']],
     tech:['Firebase','React','Cloud Functions'] },
   { n:'004', cat:'meta', sector:'メタバース', title:'企業向けバーチャル展示・研修プラットフォーム',
     body:'展示会のオンライン化と、遠隔研修環境を統合した3D空間を構築。多拠点からの同時接続と、来場ログの分析機能を実装。',
-    metrics:[['同時接続','500名+'],['遅延','<80ms'],['滞在時間','+38%']],
+    metrics:[['対応範囲','設計〜運用'],['接続環境','多拠点対応'],['サポート','継続中']],
     tech:['Three.js','WebXR','WebRTC'] },
-  { n:'005', cat:'edu', sector:'教育・研修', title:'行政職員向け DX・ITリテラシー研修',
-    body:'eラーニング教材の制作と、集合研修12回を実施。受講後の業務適用率と、現場からのフィードバック回収まで設計。',
-    metrics:[['研修回数','12回'],['受講者','340名'],['適用率','81%']],
+  { n:'005', cat:'edu', sector:'教育・研修', title:'企業・団体向け DX・AIリテラシー研修',
+    body:'eラーニング教材の制作と、複数回の集合研修を実施。受講後の業務定着まで見据えた研修設計を行いました。',
+    metrics:[['形式','集合＋eラーニング'],['対象','企業・団体'],['サポート','定着まで対応']],
     tech:['LMS','教材制作','集合研修'] },
   { n:'006', cat:'gov', sector:'行政システム', title:'庁内情報共有・文書管理システム',
     body:'紙ベースの情報共有を、権限管理付きの検索可能な文書基盤へ移行。ISMAP準拠のセキュリティ要件を踏まえた設計。',

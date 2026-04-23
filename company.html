@@ -1093,8 +1093,8 @@ Object.assign(window, { Nav, Footer, CTASection, TweaksPanel, Icon, ICONS, LOGO_
 </script>
 <script type="text/babel" data-presets="react">
 const TEAM = [
-  { initials:'YT', role:'CEO / 代表取締役', name:'山下 大貴', en:'Daiki Yamashita',
-    bio:'創業者・代表取締役。行政DX・企業システムの設計から運用まで一貫で手がけ、内製一貫の体制を牽引。'},
+  { initials:'YT', role:'CEO / 代表取締役', name:'山下 大貴', en:'Daiki Yamashita', badge:['IT歴18年','創業者'],
+    bio:'IT分野に2008年より従事。18年にわたる現場経験をもとに、行政・企業のDX設計を手がける。2025年、先端AIロボテック株式会社を創業。要件定義から運用保守まで、自ら一貫して担当する体制を構築。'},
   { initials:'TK', role:'FRONTEND · WEB / EC', name:'T.K', en:'Frontend · Web · EC',
     bio:'ホームページ・ECサイトの制作を担当。STUDIO・Shopifyなどのノーコードツールを活用し、スピーディーかつ高品質なサイト構築を実現。'},
   { initials:'YM', role:'FULLSTACK · GCP', name:'Y.M', en:'Fullstack · Google Cloud',
@@ -1174,6 +1174,22 @@ function App() {
                 </div>
                 <div className="team-role">{p.role}</div>
                 <div className="team-name">{p.name}<span className="en">{p.en}</span></div>
+                {p.badge && (
+                  <div style={{display:'flex', gap:'6px', flexWrap:'wrap'}}>
+                    {p.badge.map(b => (
+                      <span key={b} style={{
+                        fontFamily:'var(--font-mono)',
+                        fontSize:'10px',
+                        letterSpacing:'0.1em',
+                        color:'var(--plasma-cyan)',
+                        background:'rgba(92,225,255,0.08)',
+                        border:'1px solid rgba(92,225,255,0.3)',
+                        borderRadius:'999px',
+                        padding:'3px 10px',
+                      }}>{b}</span>
+                    ))}
+                  </div>
+                )}
                 <div className="team-bio">{p.bio}</div>
               </div>
             ))}
@@ -1216,7 +1232,7 @@ function App() {
             <div className="tl-item">
               <div className="tl-date">2025 · 03</div>
               <div className="tl-title">先端AIロボテック株式会社 設立</div>
-              <div className="tl-body">代表取締役 山下大貴により、大阪市中央区瓦町にて創業。内製一貫の体制を設計。</div>
+              <div className="tl-body">代表取締役 山下大貴により、大阪市中央区瓦町にて創業。IT分野18年の経験を活かし、現場に寄り添う技術会社として始動。</div>
             </div>
             <div className="tl-item">
               <div className="tl-date">2025 · Q2</div>

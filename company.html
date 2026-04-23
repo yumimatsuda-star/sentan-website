@@ -1093,13 +1093,13 @@ Object.assign(window, { Nav, Footer, CTASection, TweaksPanel, Icon, ICONS, LOGO_
 </script>
 <script type="text/babel" data-presets="react">
 const TEAM = [
-  { initials:'YT', role:'CEO / 代表取締役', name:'山下 大貴', en:'Daiki Yamashita', badge:['IT歴18年','創業者'],
+  { initials:'YT', image:'', role:'CEO / 代表取締役', name:'山下 大貴', en:'Daiki Yamashita', badge:['IT歴18年','創業者'],
     bio:'IT分野に2008年より従事。18年にわたる現場経験をもとに、行政・企業のDX設計を手がける。2025年、先端AIロボテック株式会社を創業。要件定義から運用保守まで、自ら一貫して担当する体制を構築。'},
-  { initials:'TK', role:'FRONTEND · WEB / EC', name:'T.K', en:'Frontend · Web · EC',
+  { initials:'TK', image:'', role:'FRONTEND · WEB / EC', name:'T.K', en:'Frontend · Web · EC',
     bio:'ホームページ・ECサイトの制作を担当。STUDIO・Shopifyなどのノーコードツールを活用し、スピーディーかつ高品質なサイト構築を実現。'},
-  { initials:'YM', role:'FULLSTACK · GCP', name:'Y.M', en:'Fullstack · Google Cloud',
+  { initials:'YM', image:'', role:'FULLSTACK · GCP', name:'Y.M', en:'Fullstack · Google Cloud',
     bio:'React / Next.jsを中心としたフロントエンドからバックエンドまで一貫対応。Google Cloud / Firebase / Supabase基盤の設計・運用、GASを活用した業務自動化、ガバメントクラウド要件にも対応。'},
-  { initials:'MT', role:'AI / ML · EDU', name:'M.T', en:'AI / ML · Education',
+  { initials:'MT', image:'', role:'AI / ML · EDU', name:'M.T', en:'AI / ML · Education',
     bio:'AI・機械学習の実装と、教育コンテンツ制作を担当。PoCから本番運用、研修まで横断的に対応。'},
 ];
 
@@ -1169,8 +1169,24 @@ function App() {
             {TEAM.map(p => (
               <div className="team-card" key={p.initials}>
                 <div className="team-portrait">
-                  <span className="team-initials">{p.initials}</span>
-                  <span className="team-placeholder-label">PORTRAIT · PLACEHOLDER</span>
+                  {p.image && String(p.image).trim() ? (
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        borderRadius: 'var(--radius-md)',
+                        display: 'block',
+                      }}
+                    />
+                  ) : (
+                    <>
+                      <span className="team-initials">{p.initials}</span>
+                      <span className="team-placeholder-label">PORTRAIT · PLACEHOLDER</span>
+                    </>
+                  )}
                 </div>
                 <div className="team-role">{p.role}</div>
                 <div className="team-name">{p.name}<span className="en">{p.en}</span></div>

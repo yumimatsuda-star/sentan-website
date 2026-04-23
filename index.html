@@ -1708,8 +1708,10 @@ const Hero = () => {
   const videoSrc = (document.body.getAttribute('data-hero-video-src')
                     || 'assets/hero-bg.mp4');
   const [inHero, setInHero] = React.useState(false);
+  const [visibleBadge, setVisibleBadge] = React.useState(false);
 
   React.useEffect(() => {
+    const t = setTimeout(() => setVisibleBadge(true), 2800);
     const heroEl = document.querySelector('section.hero');
     if (heroEl) {
       const observer = new IntersectionObserver(
@@ -1717,8 +1719,12 @@ const Hero = () => {
         { threshold: 0.05 }
       );
       observer.observe(heroEl);
-      return () => observer.disconnect();
+      return () => {
+        clearTimeout(t);
+        observer.disconnect();
+      };
     }
+    return () => clearTimeout(t);
   }, []);
   return (
     <section className="hero" data-variant={variant}>
@@ -1787,9 +1793,10 @@ const Hero = () => {
               fontWeight: 500,
               textTransform: 'uppercase',
               boxShadow: '0 0 12px rgba(92,225,255,0.15)',
-              opacity: inHero ? 1 : 0,
-              pointerEvents: inHero ? 'auto' : 'none',
-              transition: 'opacity 0.5s cubic-bezier(0.2, 0.7, 0.1, 1)',
+              opacity: visibleBadge && inHero ? 1 : 0,
+              transform: visibleBadge && inHero ? 'none' : 'translateY(12px)',
+              pointerEvents: visibleBadge && inHero ? 'auto' : 'none',
+              transition: 'all 0.5s cubic-bezier(0.2, 0.7, 0.1, 1)',
             };
             return (
               <div style={badgeStyle}>

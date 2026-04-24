@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>導入事例 — 先端AIロボテック</title>
-<meta name="description" content="先端AIロボテックの導入事例。行政DX・業務システム・AI活用・EC構築など、現場の課題解決の記録を業種・規模とともに公開しています。" />
-<meta property="og:title" content="導入事例 — 先端AIロボテック株式会社" />
-<meta property="og:description" content="先端AIロボテックの導入事例。行政DX・業務システム・AI活用・EC構築など、現場の課題解決の記録を業種・規模とともに公開しています。" />
+<title>利用規約 — 先端AIロボテック</title>
+<meta name="description" content="先端AIロボテック株式会社の利用規約。当社ウェブサイトのご利用条件について説明しています。" />
+<meta property="og:title" content="利用規約 — 先端AIロボテック株式会社" />
+<meta property="og:description" content="先端AIロボテック株式会社の利用規約。当社ウェブサイトのご利用条件について説明しています。" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://sentan-website.vercel.app/cases.html" />
+<meta property="og:url" content="https://sentan-website.vercel.app/terms.html" />
 <meta property="og:site_name" content="先端AIロボテック株式会社" />
 <meta property="og:image" content="https://sentan-website.vercel.app/assets/ogp.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:image" content="https://sentan-website.vercel.app/assets/ogp.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="導入事例 — 先端AIロボテック株式会社" />
-<meta name="twitter:description" content="先端AIロボテックの導入事例。行政DX・業務システム・AI活用・EC構築など、現場の課題解決の記録を業種・規模とともに公開しています。" />
+<meta name="twitter:title" content="利用規約 — 先端AIロボテック株式会社" />
+<meta name="twitter:description" content="先端AIロボテック株式会社の利用規約。当社ウェブサイトのご利用条件について説明しています。" />
 <link rel="icon" href="assets/logo-mark.svg"/>
 <style>/* ============================================================
    先端AIロボテック — Design Tokens
@@ -894,6 +894,14 @@ body[data-tone="jp"] .cta-en { display: none; }
   }
   .container { padding: 0 20px; }
 }
+/* ===================== PAGE: LEGAL ===================== */
+.legal-doc { max-width: 800px; margin: 0 auto; }
+.legal-doc .legal-meta { font-size: var(--body-sm); color: var(--fg-3); margin-bottom: var(--s-7); line-height: 1.7; }
+.legal-doc h2 { font-family: var(--font-display); font-size: var(--h3); font-weight: 600; margin: var(--s-7) 0 var(--s-3); color: var(--fg); line-height: var(--lh-snug); }
+.legal-doc h2:first-child { margin-top: 0; }
+.legal-doc p { margin: 0 0 var(--s-4); color: var(--fg-2); line-height: var(--lh-loose); }
+.legal-doc ul { margin: 0 0 var(--s-5); padding-left: 1.2em; color: var(--fg-2); line-height: var(--lh-loose); list-style: disc; }
+.legal-doc li { margin-bottom: var(--s-2); list-style: inherit; }
 </style>
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
@@ -1156,49 +1164,11 @@ Object.assign(window, { Nav, Footer, CTASection, TweaksPanel, Icon, ICONS, LOGO_
 
 </script>
 <script type="text/babel" data-presets="react">
-const CASES = [
-  { n:'001', cat:'gov', sector:'公共機関', title:'公共機関向け 電子手続き・窓口サポートシステム',
-    body:'電子申請フォームと庁内承認ワークフローの設計・構築をサポート。窓口対応の効率化と、事務処理の負担軽減を目指した設計を提案しました。',
-    metrics:[['対応範囲','設計〜運用'],['構築期間','約3ヶ月'],['サポート','継続中']],
-    tech:['Firebase','Google Cloud','React','TypeScript'] },
-  { n:'002', cat:'enterprise', sector:'小売業・EC', title:'EC基盤構築と受発注・在庫の自動化',
-    body:'複数店舗・複数チャネルのEC基盤を統合。受発注から在庫同期までを自動化し、運営チームの手作業を大幅に削減。',
-    metrics:[['対応範囲','設計〜運用'],['自動化','受発注〜在庫'],['サポート','継続中']],
-    tech:['Next.js','Cloud Run','Stripe','Firestore'] },
-  { n:'003', cat:'enterprise', sector:'製造業', title:'承認ワークフロー・業務自動化システム',
-    body:'複雑な稟議・承認フローを可視化し、紙・メール運用から脱却。監査ログと差し戻し履歴の一元管理を実現。',
-    metrics:[['対応範囲','設計〜運用'],['ペーパーレス','実現']],
-    tech:['Firebase','React','Cloud Functions'] },
-  { n:'004', cat:'meta', sector:'メタバース', title:'企業向けバーチャル展示・研修プラットフォーム',
-    body:'展示会のオンライン化と、遠隔研修環境を統合した3D空間を構築。多拠点からの同時接続と、来場ログの分析機能を実装。',
-    metrics:[['対応範囲','設計〜運用'],['接続環境','多拠点対応'],['サポート','継続中']],
-    tech:['Three.js','WebXR','WebRTC'] },
-  { n:'005', cat:'edu', sector:'教育・研修', title:'企業・団体向け DX・AIリテラシー研修',
-    body:'eラーニング教材の制作と、複数回の集合研修を実施。受講後の業務定着まで見据えた研修設計を行いました。',
-    metrics:[['形式','集合＋eラーニング'],['対象','企業・団体'],['サポート','定着まで対応']],
-    tech:['LMS','教材制作','集合研修'] },
-  { n:'006', cat:'enterprise', sector:'業務システム', title:'社内情報共有・ドキュメント管理システム',
-    body:'紙・メールベースの情報共有を、権限管理付きの検索可能なドキュメント基盤へ移行。社内ナレッジの蓄積と、業務引き継ぎの効率化を実現しました。',
-    metrics:[['対応範囲','設計〜運用'],['ペーパーレス','実現'],['サポート','継続中']],
-    tech:['GCP','Firestore','Cloud Storage'] },
-];
-
-const FILTERS = [
-  {id:'all', label:'すべて'},
-  {id:'gov', label:'行政システム'},
-  {id:'enterprise', label:'業務システム・EC'},
-  {id:'meta', label:'メタバース・3D'},
-  {id:'edu', label:'教育・研修'},
-];
-
 function App() {
-  const [filter, setFilter] = useState('all');
-  const list = filter === 'all' ? CASES : CASES.filter(c => c.cat === filter);
-
   return (
     <>
       <div className="hero-bg-stars-global" />
-      <Nav active="cases.html" />
+      <Nav active="terms.html" />
       <section className="company-hero">
         <div className="orb orb-cyan"
           style={{ width:500, height:500, top:'-60px', right:'0px' }} />
@@ -1208,12 +1178,13 @@ function App() {
           <div className="page-crumb">
             <a href="index.html" style={{color:'var(--fg-3)',borderBottom:0}}>HOME</a>
             <span className="sep">/</span>
-            <span className="here">CASES</span>
+            <span className="here">TERMS OF USE</span>
           </div>
-          <h1 className="page-h1">現場で積み上げた、<br/><em>判断の記録</em>。</h1>
-          <p className="page-lede">業種と規模だけお伝えします。何に困っていて、何を選んで、どうなったか。それだけ書いています。</p>
+          <h1 className="page-h1"><em>利用規約</em>。</h1>
+          <p className="page-lede">先端AIロボテック株式会社が運営するウェブサイトのご利用条件について説明します。</p>
         </div>
       </section>
+
       <section className="section section-tight">
         <div className="orb orb-cyan-sm"
           style={{ width:500, height:500, top:'50%', right:'-50px',
@@ -1222,34 +1193,43 @@ function App() {
           style={{ width:300, height:300, top:'50%', left:'-50px',
             transform:'translateY(-50%)' }} />
         <div className="container">
-          <div className="filter-bar">
-            {FILTERS.map(f => (
-              <button key={f.id} className={`filter-chip ${filter===f.id?'active':''}`}
-                onClick={() => setFilter(f.id)}>{f.label}</button>
-            ))}
-          </div>
-          <div className="case-detail">
-            {list.map(c => (
-              <article className="case-card" key={c.n}>
-                <div className="case-card-top">
-                  <span className="tag">{c.sector}</span>
-                  <span className="case-card-num">CASE {c.n}</span>
-                </div>
-                <h3>{c.title}</h3>
-                <p className="case-card-body">{c.body}</p>
-                <dl className="case-card-metrics">
-                  {c.metrics.map(([k,v]) => (
-                    <div key={k}><dt>{k}</dt><dd>{v}</dd></div>
-                  ))}
-                </dl>
-                <div style={{display:'flex',flexWrap:'wrap',gap:'6px'}}>
-                  {c.tech.map(t => <span key={t} className="service-tag">{t}</span>)}
-                </div>
-              </article>
-            ))}
-          </div>
+          <article className="legal-doc">
+            <p className="legal-meta">制定日：2025年3月13日　最終更新日：2026年4月24日</p>
+
+            <h2>第1条（適用）</h2>
+            <p>本利用規約は、当社が運営するウェブサイトの利用条件を定めるものです。本サイトをご利用の方は、本規約に同意したものとみなします。</p>
+
+            <h2>第2条（禁止事項）</h2>
+            <ul>
+              <li>法令または公序良俗に違反する行為</li>
+              <li>当社または第三者の知的財産権等を侵害する行為</li>
+              <li>本サイトの運営を妨げる行為</li>
+              <li>不正アクセス等の行為</li>
+              <li>虚偽情報によるお問い合わせ</li>
+              <li>その他当社が不適切と判断する行為</li>
+            </ul>
+
+            <h2>第3条（免責事項）</h2>
+            <p>本サイトの情報の正確性・完全性を保証するものではありません。本サイトの利用によって生じた損害について、当社は一切の責任を負いません。</p>
+
+            <h2>第4条（知的財産権）</h2>
+            <p>本サイトに掲載されているコンテンツの著作権は当社に帰属します。無断での複製・転用・転載を禁じます。</p>
+
+            <h2>第5条（お問い合わせ情報の取り扱い）</h2>
+            <p>お問い合わせフォームよりご入力いただいた情報は、お問い合わせへの回答・対応を目的として利用します。詳細については<a href="privacy.html" style={{color:'var(--plasma-cyan)',borderBottom:'1px solid var(--line-signal)'}}>プライバシーポリシー</a>をご確認ください。</p>
+
+            <h2>第6条（規約の変更）</h2>
+            <p>必要に応じて本規約を変更することがあります。変更後の規約は本ページに掲載した時点から効力を生じます。</p>
+
+            <h2>第7条（準拠法・管轄裁判所）</h2>
+            <p>本規約の解釈にあたっては日本法を準拠法とします。紛争が生じた場合には大阪地方裁判所を第一審の専属的合意管轄裁判所とします。</p>
+
+            <h2>お問い合わせ</h2>
+            <p>先端AIロボテック株式会社 / メール：info@airobo-tech.com / 受付時間：平日10:00〜18:00（土日祝休）</p>
+          </article>
         </div>
       </section>
+
       <CTASection />
       <Footer />
       <TweaksPanel />

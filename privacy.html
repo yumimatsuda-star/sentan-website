@@ -965,21 +965,35 @@ body[data-tone="jp"] .cta-en { display: none; }
   .case-row { grid-template-columns: 40px 1fr 32px; }
   .case-row .case-title + .case-tech, .case-row .case-sector { display: none; }
   .info-row { grid-template-columns: 1fr; gap: 6px; }
+  .footer-top { grid-template-columns: 1fr; }
 }
 @media (max-width: 620px) {
   .services-grid, .approach-grid, .team-grid, .tech-grid, .security-grid,
   .case-detail, .footer-grid, .stats-grid, .roster { grid-template-columns: 1fr; }
   .form-row.two, .form-topic { grid-template-columns: 1fr; }
-  .site-footer { padding: 48px 0 24px; }
-  .footer-top { gap: 32px; padding-bottom: 32px; }
-  .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 24px; }
+  .site-footer {
+    padding: 48px 0 24px;
+  }
+  .footer-top {
+    grid-template-columns: 1fr !important;
+    gap: 32px;
+    padding-bottom: 32px;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 24px;
+  }
+  .footer-brand {
+    flex-direction: row;
+    align-items: flex-start;
+  }
   .footer-bottom {
     flex-direction: column;
     gap: 8px;
     text-align: center;
     align-items: center;
   }
-  .container { padding: 0 20px; }
+  .container { padding: 0 16px; }
 }
 /* ===================== PAGE: LEGAL ===================== */
 .legal-doc { max-width: 800px; margin: 0 auto; }

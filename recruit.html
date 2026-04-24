@@ -19,6 +19,11 @@
   --font-display: "DM Sans", "Noto Serif JP", serif;
   --font-body: "BIZ UDPGothic", "Noto Sans JP", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
+  --starlight: #E6EEFF;
+  --bg-elevated: #0B1426;
+  --nav-height: 64px;
+  --signal-on: #041119;
+  --radius-md: 6px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { background: var(--void); color: var(--fg); font-family: var(--font-body); min-height: 100vh; }
@@ -64,11 +69,232 @@ body[data-theme="light"] .hero-bg-stars-global {
   background: radial-gradient(circle, rgba(92,225,255,0.4) 0%, transparent 70%);
   animation: orb-pulse-slow 7s ease-in-out infinite;
 }
+
+/* ----- Site nav (align with main pages) ----- */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--nav-height);
+}
+.nav-bg {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--void) 70%, transparent);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  position: relative;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+}
+.nav-brand .b-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+  font-family: var(--font-display);
+}
+.nav-brand .b-en {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--plasma-cyan);
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  margin-top: 2px;
+  display: block;
+}
+.nav-links {
+  display: flex;
+  gap: 4px;
+  margin-left: 12px;
+}
+.nav-link {
+  color: var(--fg-2);
+  font-size: 13px;
+  font-family: var(--font-display);
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  transition: color 0.2s, background 0.2s;
+}
+.nav-link:hover {
+  color: var(--fg);
+  background: var(--bg-elevated);
+}
+.nav-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.nav-lang {
+  color: var(--fg-2);
+  font-size: 12px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  background: none;
+  border: 0;
+  padding: 6px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-sm { padding: 8px 14px; font-size: 13px; }
+.btn-primary {
+  background: var(--plasma-cyan);
+  color: var(--signal-on);
+}
+
+/* ===== Hamburger / Mobile Nav ===== */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  margin-left: auto;
+  z-index: 200;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--starlight);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+.nav-hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-hamburger.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.nav-hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--void);
+  z-index: 100;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.nav-overlay.open {
+  display: flex;
+  opacity: 1;
+}
+.nav-overlay-link {
+  color: var(--starlight);
+  font-size: 24px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  padding: 12px 24px;
+  border-radius: 8px;
+  transition: color 0.2s, background 0.2s;
+}
+.nav-overlay-link:hover,
+.nav-overlay-link.active {
+  color: var(--plasma-cyan);
+  background: var(--bg-elevated);
+}
+.nav-overlay-contact {
+  margin-top: 24px;
+}
+.nav-overlay-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: var(--fg-2);
+  font-size: 28px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 8px;
+}
+@media (max-width: 980px) {
+  .nav-links { display: none; }
+  .nav-actions .btn { display: none; }
+  .nav-hamburger { display: flex; }
+}
 </style>
 </head>
 <body>
+<nav class="site-nav">
+  <div class="nav-bg"></div>
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">
+      <img src="assets/logo-mark.svg" width="28" height="28" alt="先端AIロボテック"/>
+      <div>
+        <div class="b-name">先端AIロボテック</div>
+        <div class="b-en">SENTAN · AI · ROBOTECH</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">ホーム</a>
+      <a href="services.html" class="nav-link">事業内容</a>
+      <a href="cases.html" class="nav-link">導入事例</a>
+      <a href="technology.html" class="nav-link">技術</a>
+      <a href="company.html" class="nav-link">会社情報</a>
+      <a href="contact.html" class="nav-link">お問い合わせ</a>
+    </div>
+    <div class="nav-actions">
+      <button type="button" class="nav-lang">EN</button>
+      <a class="btn btn-primary btn-sm" href="contact.html">お問い合わせ</a>
+    </div>
+    <button type="button" class="nav-hamburger" id="recruit-nav-hamburger" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div id="recruit-nav-overlay" class="nav-overlay">
+  <button type="button" class="nav-overlay-close" id="recruit-nav-close" aria-label="閉じる">×</button>
+  <a href="index.html" class="nav-overlay-link">ホーム</a>
+  <a href="services.html" class="nav-overlay-link">事業内容</a>
+  <a href="cases.html" class="nav-overlay-link">導入事例</a>
+  <a href="technology.html" class="nav-overlay-link">技術</a>
+  <a href="company.html" class="nav-overlay-link">会社情報</a>
+  <a href="contact.html" class="nav-overlay-link">お問い合わせ</a>
+  <a class="btn btn-primary nav-overlay-contact" href="contact.html">お問い合わせ</a>
+</div>
 <div class="hero-bg-stars-global"></div>
-<div style="min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px; position:relative; overflow:hidden;">
+<div style="min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px; padding-top:48px; position:relative; overflow:hidden;">
 
   <!-- 背景グロー -->
   <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:600px; height:600px; background:radial-gradient(circle, rgba(92,225,255,0.06) 0%, transparent 70%); pointer-events:none;"></div>
@@ -77,15 +303,6 @@ body[data-theme="light"] .hero-bg-stars-global {
     style="width:500px; height:500px; top:-60px; right:0px;"></div>
   <div class="orb orb-purple"
     style="width:350px; height:350px; bottom:0px; left:0px;"></div>
-
-  <!-- ロゴ -->
-  <a href="index.html" style="position:absolute; top:32px; left:32px; display:flex; align-items:center; gap:10px;">
-    <img src="assets/logo-mark.svg" width="28" height="28" alt="logo"/>
-    <div>
-      <div style="font-size:14px; font-weight:700; font-family:var(--font-display);">先端AIロボテック</div>
-      <div style="font-size:9px; letter-spacing:0.22em; color:var(--plasma-cyan); font-family:var(--font-mono);">SENTAN · AI · ROBOTECH</div>
-    </div>
-  </a>
 
   <!-- メインコンテンツ -->
   <div style="position:relative; z-index:2; max-width:560px;">
@@ -123,5 +340,31 @@ body[data-theme="light"] .hero-bg-stars-global {
   <!-- 装飾ライン -->
   <div style="position:absolute; bottom:0; left:0; right:0; height:1px; background:linear-gradient(90deg, transparent, var(--plasma-cyan), transparent); opacity:0.3;"></div>
 </div>
+<script>
+(function () {
+  var ham = document.getElementById('recruit-nav-hamburger');
+  var overlay = document.getElementById('recruit-nav-overlay');
+  var closeBtn = document.getElementById('recruit-nav-close');
+  if (!ham || !overlay) return;
+  function setOpen(open) {
+    overlay.classList.toggle('open', open);
+    ham.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  ham.addEventListener('click', function () {
+    setOpen(!overlay.classList.contains('open'));
+  });
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function () {
+      setOpen(false);
+    });
+  }
+  overlay.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      setOpen(false);
+    });
+  });
+})();
+</script>
 </body>
 </html>

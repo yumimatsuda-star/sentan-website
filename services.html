@@ -877,6 +877,91 @@ body[data-tone="jp"] .cta-en { display: none; }
 .tweak-seg button.on { background: var(--plasma-cyan); color: var(--signal-on); }
 
 /* ===================== UTILS & RESPONSIVE ===================== */
+/* ===== Hamburger / Mobile Nav ===== */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  margin-left: auto;
+  z-index: 200;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--starlight);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+.nav-hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-hamburger.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.nav-hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Fullscreen overlay */
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--void);
+  z-index: 100;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.nav-overlay.open {
+  display: flex;
+  opacity: 1;
+}
+.nav-overlay-link {
+  color: var(--starlight);
+  font-size: 24px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  padding: 12px 24px;
+  border-radius: 8px;
+  transition: color 0.2s, background 0.2s;
+}
+.nav-overlay-link:hover,
+.nav-overlay-link.active {
+  color: var(--plasma-cyan);
+  background: var(--bg-elevated);
+}
+.nav-overlay-contact {
+  margin-top: 24px;
+}
+.nav-overlay-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: var(--fg-2);
+  font-size: 28px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 8px;
+}
+
 .spacer-sm { height: 32px; } .spacer-md { height: 64px; }
 .divider-dotted { height: 1px;
   background: repeating-linear-gradient(90deg, var(--fg-3) 0 2px, transparent 2px 6px);
@@ -891,6 +976,8 @@ body[data-tone="jp"] .cta-en { display: none; }
   .services-grid, .approach-grid, .team-grid, .tech-grid, .security-grid,
   .case-detail, .footer-grid, .stats-grid, .roster { grid-template-columns: 1fr 1fr; }
   .nav-links { display: none; }
+  .nav-actions .btn { display: none; }
+  .nav-hamburger { display: flex; }
   .case-row { grid-template-columns: 40px 1fr 32px; }
   .case-row .case-title + .case-tech, .case-row .case-sector { display: none; }
   .info-row { grid-template-columns: 1fr; gap: 6px; }
@@ -978,6 +1065,7 @@ const ICONS = {
 
 /* ===== Nav ===== */
 const Nav = ({ active }) => {
+  const [menuOpen, setMenuOpen] = React.useState(false);
   const links = [
     { id: 'index.html', label: 'ホーム' },
     { id: 'services.html', label: '事業内容' },
@@ -986,31 +1074,68 @@ const Nav = ({ active }) => {
     { id: 'company.html', label: '会社情報' },
     { id: 'contact.html', label: 'お問い合わせ' },
   ];
+
+  React.useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
+
   return (
-    <nav className="site-nav">
-      <div className="nav-bg" />
-      <div className="nav-inner">
-        <a className="nav-brand" href="index.html">
-          <span dangerouslySetInnerHTML={{__html: LOGO_MARK}} />
-          <div>
-            <div className="b-name">先端AIロボテック</div>
-            <div className="b-en">SENTAN · AI · ROBOTECH</div>
-          </div>
-        </a>
-        <div className="nav-links">
-          {links.slice(1).map(l => (
-            <a key={l.id} href={l.id}
-               className={`nav-link ${active === l.id ? 'active' : ''}`}>{l.label}</a>
-          ))}
-        </div>
-        <div className="nav-actions">
-          <button className="nav-lang">EN</button>
-          <a className="btn btn-primary btn-sm" href="contact.html">
-            お問い合わせ <Icon path={ICONS.arrow} size={14} />
+    <>
+      <nav className="site-nav">
+        <div className="nav-bg" />
+        <div className="nav-inner">
+          <a className="nav-brand" href="index.html">
+            <span dangerouslySetInnerHTML={{__html: LOGO_MARK}} />
+            <div>
+              <div className="b-name">先端AIロボテック</div>
+              <div className="b-en">SENTAN · AI · ROBOTECH</div>
+            </div>
           </a>
+          <div className="nav-links">
+            {links.slice(1).map(l => (
+              <a key={l.id} href={l.id}
+                 className={`nav-link ${active === l.id ? 'active' : ''}`}>{l.label}</a>
+            ))}
+          </div>
+          <div className="nav-actions">
+            <button className="nav-lang">EN</button>
+            <a className="btn btn-primary btn-sm" href="contact.html">
+              お問い合わせ <Icon path={ICONS.arrow} size={14} />
+            </a>
+          </div>
+          <button
+            type="button"
+            className={`nav-hamburger ${menuOpen ? 'open' : ''}`}
+            onClick={() => setMenuOpen(o => !o)}
+            aria-label="メニューを開く"
+          >
+            <span /><span /><span />
+          </button>
         </div>
+      </nav>
+
+      <div className={`nav-overlay ${menuOpen ? 'open' : ''}`}>
+        <button type="button" className="nav-overlay-close" onClick={() => setMenuOpen(false)} aria-label="閉じる">×</button>
+        {links.map(l => (
+          <a
+            key={l.id}
+            href={l.id}
+            className={`nav-overlay-link ${active === l.id ? 'active' : ''}`}
+            onClick={() => setMenuOpen(false)}
+          >
+            {l.label}
+          </a>
+        ))}
+        <a className="btn btn-primary nav-overlay-contact" href="contact.html" onClick={() => setMenuOpen(false)}>
+          お問い合わせ
+        </a>
       </div>
-    </nav>
+    </>
   );
 };
 

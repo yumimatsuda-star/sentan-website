@@ -1389,7 +1389,7 @@ function App() {
               <label className="form-consent">
                 <input type="checkbox" id="f-consent" checked={form.consent} onChange={e => upd('consent', e.target.checked)} />
                 <span>
-                  <a href="#" style={{color:'var(--plasma-cyan)',borderBottom:'1px solid var(--line-signal)'}}>プライバシーポリシー</a>に同意のうえ、送信します。ご記入いただいた情報は、お問い合わせ対応の目的以外には使用いたしません。
+                  <a href="privacy.html" target="_blank" rel="noopener noreferrer" style={{color:'var(--plasma-cyan)',borderBottom:'1px solid var(--line-signal)'}}>プライバシーポリシー</a>に同意のうえ、送信します。ご記入いただいた情報は、お問い合わせ対応の目的以外には使用いたしません。
                 </span>
               </label>
               {errors.consent && <div className="form-err-msg" style={{marginTop:'-18px',marginBottom:'16px'}}>{errors.consent}</div>}

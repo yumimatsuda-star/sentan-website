@@ -1024,9 +1024,17 @@ body[data-tone="jp"] .cta-en { display: none; }
 }
 
 /* Subsidy page — solar accent */
+.subsidy-hero { padding: 72px 0 48px; }
+.subsidy-hero .eyebrow { margin-bottom: 16px; }
+.subsidy-hero .page-h1 {
+  font-size: clamp(28px, 3.5vw, 48px);
+  line-height: 1.2;
+  max-width: none;
+  margin-bottom: 14px;
+}
 .subsidy-hero .page-h1 em { color: var(--solar); }
 .section-title em { color: var(--solar); }
-.subsidy-deadline { font-size: 17px; line-height: 1.6; color: var(--pulsar); font-weight: 500; margin-top: 16px; }
+.subsidy-deadline { font-size: 16px; line-height: 1.6; color: var(--pulsar); font-weight: 500; margin-top: 0; }
 .subsidy-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .subsidy-stat-card {
   background: var(--abyss);
@@ -1543,7 +1551,7 @@ function App() {
           style={{ width:350, height:350, bottom:'0px', left:'0px', opacity:0.5 }} />
         <div className="container">
           <div className="eyebrow">SUBSIDY INFO — 2026</div>
-          <h1 className="page-h1" style={{maxWidth:'none'}}>
+          <h1 className="page-h1">
             令和8年度 <em>利益率向上・賃上げ支援事業</em>（大阪府）
           </h1>
           <p className="subsidy-deadline">申請期限：2026年6月26日（金）17:00 まで</p>

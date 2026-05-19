@@ -90,14 +90,56 @@ Cloudflareのダッシュボードでデプロイ状況を確認できます。
 
 - ファイル名は内容がわかる英数字で（例：`subsidy-2026.html`）
 - `index.html` のhead・グローバルスタイル・Nav・Footerをベースにコピーして作成
-- OGPタグのURLは `https://airobo-tech.com/ページ名.html` にする
-- **Reactのstateの重複宣言に注意**：`const { useState, useEffect, useRef } = React;` はscript内で1回だけ宣言する
+- **Reactの重複宣言に注意**：`const { useState, useEffect, useRef } = React;` はscript内で1回だけ宣言する
+
+### 特設ページのメタタグ設定（SEO・OGP）
+
+新しい特設ページを作成する際は、以下のメタタグを必ず設定してください。
+
+```html
+<!-- SEO -->
+<title>ページタイトル｜先端AIロボテック株式会社</title>
+<meta name="description" content="120文字程度の説明文。検索結果に表示される。" />
+<meta name="keywords" content="キーワード1, キーワード2, キーワード3" />
+
+<!-- OGP（SNSシェア時のカード表示） -->
+<meta property="og:title" content="ページタイトル｜先端AIロボテック株式会社" />
+<meta property="og:description" content="descriptionと同じ文言" />
+<meta property="og:url" content="https://airobo-tech.com/ページ名.html" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="先端AIロボテック株式会社" />
+<meta property="og:image" content="https://airobo-tech.com/assets/ogp.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<!-- Twitterカード -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="ページタイトル｜先端AIロボテック株式会社" />
+<meta name="twitter:description" content="descriptionと同じ文言" />
+<meta name="twitter:image" content="https://airobo-tech.com/assets/ogp.png" />
+
+<!-- 構造化データ（JSON-LD）→ </head>の直前に追加 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "name": "ページタイトル",
+  "description": "説明文",
+  "url": "https://airobo-tech.com/ページ名.html",
+  "provider": {
+    "@type": "Organization",
+    "name": "先端AIロボテック株式会社",
+    "url": "https://airobo-tech.com"
+  }
+}
+</script>
+```
 
 ### 現在の特設ページ一覧
 
-| ページ | URL | 概要 |
-|--------|-----|------|
-| 令和8年度 利益率向上・賃上げ支援事業 | `/subsidy-2026.html` | 大阪府補助金情報。上限500万・補助率2/3。申請期限2026/6/26 |
+| ページ | URL | 概要 | 申請期限 |
+|--------|-----|------|---------|
+| 令和8年度 利益率向上・賃上げ支援事業 | `/subsidy-2026.html` | 大阪府補助金。上限500万・補助率2/3 | 2026/6/26 |
 
 ---
 
@@ -120,19 +162,6 @@ Cloudflareのダッシュボードでデプロイ状況を確認できます。
 
 ---
 
-## メタタグのURL
-
-全HTMLファイルのOGP・Twitterカードのメタタグは `https://www.airobo-tech.com` を使用しています。
-新しいページを追加する場合は以下の形式でメタタグを記載してください。
-
-```html
-<meta property="og:url" content="https://www.airobo-tech.com/ページ名.html" />
-<meta property="og:image" content="https://www.airobo-tech.com/assets/ogp.png" />
-<meta name="twitter:image" content="https://www.airobo-tech.com/assets/ogp.png" />
-```
-
----
-
 ## 注意事項
 
 - **ローカル作業ディレクトリ**：`~/website/`（以前の `~/Downloads/website/project/` から移動済み）
@@ -140,3 +169,4 @@ Cloudflareのダッシュボードでデプロイ状況を確認できます。
 - **商用利用**：Cloudflare Pagesは商用利用可・無料です。
 - **ブランチ**：本番デプロイはmainブランチのみ。開発時は別ブランチを使うことを推奨します。
 - **Reactの重複宣言エラー**：新しいページを追加する際、NavやFooterをコピーすると `useState` 等が重複して真っ黒画面になることがあります。script内の `const { useState, ... } = React;` が1箇所だけになっているか確認してください。
+- **SEOの反映タイミング**：新しいページがGoogle検索結果に表示されるまで数週間〜1ヶ月程度かかることがあります。早めのpushを推奨します。

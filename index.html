@@ -2262,6 +2262,46 @@ const CasesTeaser = () => {
   );
 };
 
+const NewsBar = () => (
+  <div style={{
+    background: 'linear-gradient(90deg, rgba(255,214,107,0.12) 0%, rgba(92,225,255,0.08) 100%)',
+    borderTop: '1px solid rgba(255,214,107,0.3)',
+    borderBottom: '1px solid rgba(255,214,107,0.3)',
+    padding: '14px 0',
+  }}>
+    <div className="container" style={{ display:'flex', alignItems:'center', gap:'16px', flexWrap:'wrap' }}>
+      <span style={{
+        background: '#FFD66B',
+        color: '#040712',
+        fontFamily: 'var(--font-mono)',
+        fontSize: '10px',
+        fontWeight: 700,
+        letterSpacing: '0.14em',
+        padding: '3px 10px',
+        borderRadius: '2px',
+        flexShrink: 0,
+      }}>NEW</span>
+      <span style={{ fontSize:'14px', color:'var(--starlight)', lineHeight:1.5 }}>
+        令和8年度 利益率向上・賃上げ支援事業（大阪府）の補助金情報を公開しました。上限500万円・補助率2/3。
+      </span>
+      <a href="subsidy-2026.html" style={{
+        marginLeft: 'auto',
+        fontFamily: 'var(--font-mono)',
+        fontSize: '12px',
+        color: '#FFD66B',
+        letterSpacing: '0.08em',
+        whiteSpace: 'nowrap',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '6px',
+        flexShrink: 0,
+      }}>
+        詳しく見る →
+      </a>
+    </div>
+  </div>
+);
+
 const WhatWeDo = () => (
   <section className="section" style={{borderTop:'1px solid var(--line)', borderBottom:'1px solid var(--line)', overflow:'hidden'}}>
     <div className="container">
@@ -2632,6 +2672,7 @@ function App() {
       <RecruitBanner />
       <HeroToast />
       <Hero />
+      <NewsBar />
       <WhatWeDo />
       <ServicesSummary />
       <CasesTeaser />

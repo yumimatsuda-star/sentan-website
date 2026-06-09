@@ -2302,6 +2302,46 @@ const NewsBar = () => (
   </div>
 );
 
+const NewsBarEssential = () => (
+  <div style={{
+    background: 'linear-gradient(90deg, rgba(255,214,107,0.12) 0%, rgba(92,225,255,0.08) 100%)',
+    borderTop: '1px solid rgba(255,214,107,0.3)',
+    borderBottom: '1px solid rgba(255,214,107,0.3)',
+    padding: '22px 0',
+  }}>
+    <div className="container" style={{ display:'flex', alignItems:'center', gap:'16px', flexWrap:'wrap' }}>
+      <span style={{
+        background: '#FFD66B',
+        color: '#040712',
+        fontFamily: 'var(--font-mono)',
+        fontSize: '12px',
+        fontWeight: 700,
+        letterSpacing: '0.14em',
+        padding: '5px 12px',
+        borderRadius: '2px',
+        flexShrink: 0,
+      }}>NEW</span>
+      <span style={{ fontSize:'16px', color:'var(--starlight)', lineHeight:1.5 }}>
+        令和8年度 生活維持役務等効率化促進事業費補助金（経済産業省）の情報を公開しました。エッセンシャルサービスをAI・ロボティクスで支援。事業者向け公募は2026年6月25日まで。
+      </span>
+      <a href="subsidy-essential-2026.html" style={{
+        marginLeft: 'auto',
+        fontFamily: 'var(--font-mono)',
+        fontSize: '12px',
+        color: '#FFD66B',
+        letterSpacing: '0.08em',
+        whiteSpace: 'nowrap',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '6px',
+        flexShrink: 0,
+      }}>
+        詳しく見る →
+      </a>
+    </div>
+  </div>
+);
+
 const WhatWeDo = () => (
   <section className="section" style={{borderTop:'1px solid var(--line)', borderBottom:'1px solid var(--line)', overflow:'hidden'}}>
     <div className="container">
@@ -2673,6 +2713,8 @@ function App() {
       <HeroToast />
       <Hero />
       <NewsBar />
+      {/* 生活維持役務 補助金バー: 2026/6/25 締切後はこの行を削除 */}
+      <NewsBarEssential />
       <WhatWeDo />
       <ServicesSummary />
       <CasesTeaser />
